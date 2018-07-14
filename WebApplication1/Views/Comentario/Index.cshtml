@@ -1,0 +1,87 @@
+﻿@model IEnumerable<WebApplication1.Models.Comentario>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pagina_Orden.OrdenID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pagina_Solicitud.SolicitudID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaginaNumero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaginaNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaginaValidada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PaginaTipoDocumento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ComentarioNum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ComentarioFecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ComentarioPersona)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ComentarioTexto)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pagina_Orden.OrdenID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pagina_Solicitud.SolicitudID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaginaNumero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaginaNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaginaValidada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PaginaTipoDocumento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ComentarioNum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ComentarioFecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ComentarioPersona)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ComentarioTexto)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PaginaID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PaginaID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PaginaID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,59 @@
+﻿@model WebApplication1.Models.ViewModels.Pago
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Pago</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pago_Cuenta.CuentaNumero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pago_Cuenta.CuentaNumero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pago_Solicitud.SolicitudTipoSolicitante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pago_Solicitud.SolicitudTipoSolicitante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PagoFecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PagoFecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PagoDescripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PagoDescripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PagoMonto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PagoMonto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PagoID }) |
+    @*@Html.ActionLink("Back to List", "Index")*@
+    @Html.ActionLink("Vovler a la Solicitud", "Edit", "Solicitud", new { id = ViewBag.SolicitudID }, null)
+</p>

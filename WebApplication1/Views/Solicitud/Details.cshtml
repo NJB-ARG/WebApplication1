@@ -1,0 +1,263 @@
+﻿@model WebApplication1.Models.ViewModels.Solicitud
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#sectionA">Tab Solicitud</a></li>
+    <li><a data-toggle="tab" href="#sectionB">Tab Paginas</a></li>
+    <li><a data-toggle="tab" href="#sectionC">Tab Pagos</a></li>
+    <li><a data-toggle="tab" href="#sectionD">Tab Documentos Adjuntos</a></li>
+    <li class="dropdown">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a data-toggle="tab" href="#dropdown1">Dropdown 1</a></li>
+            <li><a data-toggle="tab" href="#dropdown2">Dropdown 2</a></li>
+        </ul>
+    </li>
+</ul>
+<div class="tab-content">
+    <div id="sectionA" class="tab-pane fade in active">
+        @*<p>Tab Solicitud content…</p>*@
+        <h4>Solicitud de Venta seleccionada</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.SolicitudID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SolicitudID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SolicitudNum)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SolicitudNum)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SolicitudDescripcion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SolicitudDescripcion)
+            </dd>
+
+            <dt>
+                @*@Html.DisplayNameFor(model => model.EmpleadoID)*@
+                Empleado Nombre Completo
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Solicitud_Empleado.FullName)
+            </dd>
+
+            <dt>
+                @*@Html.DisplayNameFor(model => model.ProspectoID)*@
+                Prospecto Nombre Completo
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Solicitud_Prospecto.FullName)
+            </dd>
+
+            <dt>
+                @*@Html.DisplayNameFor(model => model.ClienteID)*@
+                Cliente Nombre Completo
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Solicitud_Cliente.FullName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SolicitudTipoSolicitante)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SolicitudTipoSolicitante)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SolicitudFecCreacion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SolicitudFecCreacion)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SolicitudFecVencimiento)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SolicitudFecVencimiento)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Solicitud_Sucursal.SucursalNombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Solicitud_Sucursal.SucursalNombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SolicitudEstado)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SolicitudEstado)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.SolicitudMontoTotal)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SolicitudMontoTotal)
+            </dd>
+        </dl>
+        <h5>Solicitud Detalle: líneas de la solicitud</h5>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Solicitud_LineasSolicitud)
+            </dt>
+            <dd>
+                <table class="table">
+                    <tr>
+                        <th>Numero</th>
+                        <th>Producto</th>
+                        <th>Monto</th>
+                    </tr>
+                    @foreach (var item in Model.Solicitud_LineasSolicitud)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LineaSolicitudNum)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LineaSolicitud_Producto.ProductoDesc)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LineaSolicitudMonto)
+                        </td>
+                    </tr>
+                    }
+                </table>
+            </dd>
+        </dl>
+    </div>
+    <div id="sectionB" class="tab-pane fade">
+        @*<p>Tab Ordenes content…</p>*@
+        <h5>Paginas del documento tipo Solicitud de Venta seleccionado</h5>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Solicitud_Paginas)
+            </dt>
+            <dd>
+                <table class="table">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Tipo</th>
+                    </tr>
+                    @foreach (var item in Model.Solicitud_Paginas)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PaginaNombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GetType().Name)
+                        </td>
+                    </tr>
+                    }
+                </table>
+            </dd>
+        </dl>        
+    </div>
+    <div id="sectionC" class="tab-pane fade">
+        @*<p>Tab Ordenes content…</p>*@
+        <h5>Pagos de la Solicitud</h5>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Solicitud_Pagos)
+            </dt>
+            <dd>
+                <table class="table">
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Descripcion</th>
+                        <th>Monto</th>                        
+                    </tr>
+                    @foreach (var item in Model.Solicitud_Pagos)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PagoFecha)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PagoDescripcion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PagoMonto)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </dd>
+        </dl>        
+    </div>
+    <div id="sectionD" class="tab-pane fade">
+        @*<p>Tab Ordenes content…</p>*@
+        <h5>Documentos adjuntos de la Solicitud</h5>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Solicitud_Pagos)
+            </dt>
+            <dd>
+                <table class="table">
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Descripcion</th>
+                        <th>Monto</th>
+                    </tr>
+                    @foreach (var item in Model.Solicitud_Pagos)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PagoFecha)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PagoDescripcion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PagoMonto)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </dd>
+        </dl>
+    </div>
+    <div id="dropdown1" class="tab-pane fade">
+        <p>Dropdown 1 content…</p>
+    </div>
+    <div id="dropdown2" class="tab-pane fade">
+        <p>Dropdown 2 content…</p>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SolicitudID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

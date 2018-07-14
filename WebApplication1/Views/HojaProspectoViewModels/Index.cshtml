@@ -1,0 +1,45 @@
+﻿@model IEnumerable<WebApplication1.Models.ViewModels.HojaProspectoViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HojaProspectoFecCreacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HojaProspectoFecUltMod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HojaProspectoComentario)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HojaProspectoFecCreacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HojaProspectoFecUltMod)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HojaProspectoComentario)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.HojaProspectoViewModelID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.HojaProspectoViewModelID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.HojaProspectoViewModelID })
+        </td>
+    </tr>
+}
+
+</table>

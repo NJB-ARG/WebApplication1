@@ -1,0 +1,181 @@
+﻿@model WebApplication1.Models.ViewModels.PerfilIndexViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#sectionA">Perfiles</a></li>
+    <li><a data-toggle="tab" href="#sectionB">Listado Acciones</a></li>
+</ul>
+
+<div class="tab-content">
+    <div id="sectionA" class="tab-pane fade in active">
+
+        <h2>Operaciones de cada ROL - Perfiles WhiteList</h2>
+
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Perfiles.SingleOrDefault().PerfilDescripcion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Perfiles.SingleOrDefault().Perfil_Accion.AccionNombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Perfiles.SingleOrDefault().Perfil_Controladora.ControladoraNombre)
+                </th>
+                <th>
+                    @*@Html.DisplayNameFor(model => model.Perfiles.SingleOrDefault().Perfil_Rol.Name)*@
+                    Rol
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Perfiles.SingleOrDefault().PerfilInicial)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Perfiles.SingleOrDefault().PerfilOwerRequerido)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.Perfiles)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PerfilDescripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Perfil_Accion.AccionNombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Perfil_Controladora.ControladoraNombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Perfil_Rol.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PerfilInicial)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PerfilOwerRequerido)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.PerfilID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.PerfilID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.PerfilID })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+
+    <div id="sectionB" class="tab-pane fade">
+
+        <h3>Lista de Acciones por Módulo / Controladora</h3>
+
+        @* VIEWMODEL navegacion datos *@
+        <table class="table">
+            <tr>
+                <th>
+                    Módulos
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.Modulos)
+            {
+                string selectedRow = "";
+                if (item.ModuloID == ViewBag.ModuloID)
+                {
+                    selectedRow = "success";
+                }
+                <tr class="@selectedRow">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModuloDescripcion)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Controladoras", "Index", new { id = item.ModuloID }) |
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.ModuloID }) |*@
+                        @*@Html.ActionLink("Details", "Details", new { id = item.ModuloID }) |*@
+                        @*@Html.ActionLink("Delete", "Delete", new { id = item.ModuloID })*@
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+
+        @if (Model.Controladoras != null)
+        {
+            <h3>Controladoras pertenecientes al Modulo Seleccionado</h3>
+            <table class="table">
+                <tr>
+                    <th></th>
+                    <th>Numero</th>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                </tr>
+
+                @foreach (var item in Model.Controladoras)
+                {
+                    string selectedRow = "";
+                    if (item.ControladoraID == ViewBag.ControladoraID)
+                    {
+                        selectedRow = "success";
+                    }
+                    <tr class="@selectedRow">
+                        <td>
+                            @Html.ActionLink("Select", "Index", new { controladoraID = item.ControladoraID })
+                        </td>
+                        <td>
+                            @item.ControladoraNumero
+                        </td>
+                        <td>
+                            @item.ControladoraNombre
+                        </td>
+                        <td>
+                            @item.ControladoraDescripcion
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        }
+
+        @if (Model.Acciones != null)
+        {
+            <h3>
+                Acciones sobre la Controladora seleccionada
+            </h3>
+            <table class="table">
+                <tr>
+                    <th>Acción Nombre</th>
+                    <th>Acción Numero</th>
+                    <th>Acción Descripción</th>
+                </tr>
+                @foreach (var item in Model.Acciones)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AccionNombre)
+                            @*@item.AccionNombre*@
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AccionNumero)
+                            @*@item.AccionNumero*@
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AccionDescripcion)
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        
+    </div>
+</div>

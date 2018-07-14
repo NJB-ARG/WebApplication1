@@ -1,0 +1,183 @@
+﻿@model IEnumerable<WebApplication1.Models.ViewModels.Prospecto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonaNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonaApellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonaTelefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonaDireccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonaCUIL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonaDni)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonaMail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonaFechaNacimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonaSexo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonaNacionalidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonaLocalidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProspectoUnidadBuscada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProspectoProfesion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProspectoMail2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProspectoTelefono2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProspectoFacebook)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProspectoTwiter)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProspectoHorarioContacto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProspectoCanalInicial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProspectoUsuarioDeMoto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProspectoUnidadActual)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProspectoEntregaUnidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProspectoAnioUnidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProspectoKmUnidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProspectoConocimientoTecnico)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProspectoTipoUsoUnidad)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonaNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonaApellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonaTelefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonaDireccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonaCUIL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonaDni)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonaMail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonaFechaNacimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonaSexo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonaNacionalidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonaLocalidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProspectoUnidadBuscada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProspectoProfesion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProspectoMail2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProspectoTelefono2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProspectoFacebook)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProspectoTwiter)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProspectoHorarioContacto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProspectoCanalInicial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProspectoUsuarioDeMoto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProspectoUnidadActual)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProspectoEntregaUnidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProspectoAnioUnidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProspectoKmUnidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProspectoConocimientoTecnico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProspectoTipoUsoUnidad)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PersonaID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PersonaID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PersonaID })
+        </td>
+    </tr>
+}
+
+</table>

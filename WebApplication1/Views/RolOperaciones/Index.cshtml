@@ -1,0 +1,154 @@
+﻿@model WebApplication1.Models.ViewModels.RolOperacionesIndexViewModel
+
+@{
+    ViewBag.Title = "Operaciones";
+}
+
+<h2>OPERACIONES ROLES - WhiteList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.RolOperaciones_Operacion.OperacionDescripcion)*@
+            Operacion Descripción
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.RolOperaciones_Rol.Name)*@
+            Rol Descripción
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.RolOperacionesOwerRequired)*@
+            Owner Requerido?
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.RolOperacionesActivo)*@
+            Activo?
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.RolOperaciones)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RolOperaciones_Operacion.OperacionDescripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RolOperaciones_Rol.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RolOperacionesOwerRequired)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RolOperacionesActivo)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.RolOperacionesID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.RolOperacionesID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.RolOperacionesID })
+            </td>
+        </tr>
+    }
+</table>
+
+@* VIEWMODEL navegacion datos *@
+<table class="table">
+    <tr>
+        <th>
+            Módulos
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Modulos)
+    {
+        string selectedRow = "";
+        if (item.ModuloID == ViewBag.ModuloID)
+        {
+            selectedRow = "success";
+        }
+        <tr class="@selectedRow">
+            <td>
+                @Html.DisplayFor(modelItem => item.ModuloDescripcion)
+            </td>
+            <td>
+                @* Added link*@
+                @Html.ActionLink("Controladoras", "Index", "RolOperaciones", new { id = item.ModuloID}, null)
+                @Html.ActionLink("Controladoras", "Index", new { id = item.ModuloID }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.ModuloID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ModuloID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ModuloID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+@if (Model.Controladoras != null)
+{
+    <h3>Controladoras pertenecientes al Modulo Seleccionado</h3>
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>Numero</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+        </tr>
+
+        @foreach (var item in Model.Controladoras)
+        {
+            string selectedRow = "";
+            if (item.ControladoraID == ViewBag.ControladoraID)
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.ActionLink("Select", "Index", new { controladoraID = item.ControladoraID })
+                </td>
+                <td>
+                    @item.ControladoraNumero
+                </td>
+                <td>
+                    @item.ControladoraNombre
+                </td>
+                <td>
+                    @item.ControladoraDescripcion
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+@if (Model.Operaciones != null)
+{
+    <h3>
+        Operaciones sobre la Controladora seleccionada
+    </h3>
+    <table class="table">
+        <tr>
+            <th>Operacion Nombre</th>
+            <th>Operacion Numero</th>
+            <th>Operación Descripción</th>
+        </tr>
+        @foreach (var item in Model.Operaciones)
+        {
+            <tr>
+                <td>
+                    @item.Operacion_Accion.AccionNombre
+                </td>
+                <td>
+                    @item.Operacion_Accion.AccionNumero
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OperacionDescripcion)
+                </td>
+            </tr>
+        }
+    </table>
+}

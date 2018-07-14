@@ -1,0 +1,127 @@
+﻿@model WebApplication1.Models.ViewModels.ClienteIndexViewModel
+
+@{
+    ViewBag.Title = "Clientes";
+}
+
+<h2>Clientes - Solicitudes</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            PersonaNombre
+        </th>
+        <th>
+            PersonaApellido
+        </th>
+        <th>
+            PersonaCUIL
+        </th>
+        <th>
+            ClienteTipo
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Clientes)
+    {
+        string selectedRow = "";
+        if (item.PersonaID == ViewBag.ClienteID)
+        {
+            selectedRow = "success";
+        }
+        <tr class="@selectedRow">
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonaNombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonaApellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonaCUIL)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClienteTipo)
+            </td>
+            @*<td>
+                @if (item.OfficeAssignment != null)
+                {
+                    @item.OfficeAssignment.Location
+                }
+            </td>*@
+            <td>
+                @* Added link*@
+                @Html.ActionLink("Solicitudes", "Index", new { id = item.PersonaID }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.PersonaID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PersonaID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PersonaID })
+            </td>
+            </tr>
+        }
+
+    </table>
+
+
+@if (Model.Solicitudes != null)
+{
+    <h3>Solicitudes para el Cliente Seleccionado</h3>
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>ID Solicitud</th>
+            <th>Numero</th>
+            <th>Solicitud Desc</th>
+        </tr>
+
+        @foreach (var item in Model.Solicitudes)
+        {
+            string selectedRow = "";
+            if (item.SolicitudID == ViewBag.SolicitudID)
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.ActionLink("Select", "Index", new { solicitudID = item.SolicitudID })
+                </td>
+                <td>
+                    @item.SolicitudID
+                </td>
+                <td>
+                    @item.SolicitudNum
+                </td>
+                <td>
+                    @item.SolicitudDescripcion
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+@if (Model.Paginas != null)
+{
+    <h3>
+        Paginas de datos de la Solicitud Seleccionada
+    </h3>
+    <table class="table">
+        <tr>
+            <th>Pagina ID</th>
+            <th>Pagina Nombre</th>
+        </tr>
+        @foreach (var item in Model.Paginas)
+        {
+            <tr>
+                <td>
+                    @item.PaginaID
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaginaNombre)
+                </td>
+            </tr>
+        }
+    </table>
+}

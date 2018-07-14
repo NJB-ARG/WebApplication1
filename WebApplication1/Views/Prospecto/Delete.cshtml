@@ -1,0 +1,232 @@
+﻿@model WebApplication1.Models.ViewModels.Prospecto
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Prospecto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaApellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaApellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaTelefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaTelefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaDireccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaDireccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaCUIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaCUIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaDni)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaDni)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaMail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaMail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaFechaNacimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaFechaNacimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaSexo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaSexo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaNacionalidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaNacionalidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaLocalidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaLocalidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProspectoUnidadBuscada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProspectoUnidadBuscada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProspectoProfesion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProspectoProfesion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProspectoMail2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProspectoMail2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProspectoTelefono2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProspectoTelefono2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProspectoFacebook)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProspectoFacebook)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProspectoTwiter)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProspectoTwiter)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProspectoHorarioContacto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProspectoHorarioContacto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProspectoCanalInicial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProspectoCanalInicial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProspectoUsuarioDeMoto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProspectoUsuarioDeMoto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProspectoUnidadActual)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProspectoUnidadActual)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProspectoEntregaUnidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProspectoEntregaUnidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProspectoAnioUnidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProspectoAnioUnidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProspectoKmUnidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProspectoKmUnidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProspectoConocimientoTecnico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProspectoConocimientoTecnico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProspectoTipoUsoUnidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProspectoTipoUsoUnidad)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

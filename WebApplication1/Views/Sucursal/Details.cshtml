@@ -1,0 +1,42 @@
+﻿@model WebApplication1.Models.ViewModels.Sucursal
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sucursal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Sucursal_Empresa.EmpresaNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sucursal_Empresa.EmpresaNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SucursalNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SucursalNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SucursalDireccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SucursalDireccion)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SucursalID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

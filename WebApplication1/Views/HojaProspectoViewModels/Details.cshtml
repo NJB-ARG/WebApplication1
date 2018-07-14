@@ -1,0 +1,42 @@
+﻿@model WebApplication1.Models.ViewModels.HojaProspectoViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>HojaProspectoViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HojaProspectoFecCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HojaProspectoFecCreacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HojaProspectoFecUltMod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HojaProspectoFecUltMod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HojaProspectoComentario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HojaProspectoComentario)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.HojaProspectoViewModelID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

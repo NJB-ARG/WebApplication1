@@ -1,0 +1,123 @@
+﻿@model WebApplication1.Models.ViewModels.Solicitud
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Solicitud</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SolicitudID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SolicitudID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SolicitudNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SolicitudNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SolicitudDescripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SolicitudDescripcion)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.EmpleadoID)*@
+            Empleado Nombre Completo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Solicitud_Empleado.FullName)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.ProspectoID)*@
+            Prospecto Nombre Completo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Solicitud_Prospecto.FullName)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.ClienteID)*@
+            Cliente Nombre Completo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Solicitud_Cliente.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SolicitudTipoSolicitante)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SolicitudTipoSolicitante)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SolicitudFecCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SolicitudFecCreacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SolicitudFecVencimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SolicitudFecVencimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Solicitud_Sucursal.SucursalNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Solicitud_Sucursal.SucursalNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SolicitudEstado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SolicitudEstado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SolicitudMontoTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SolicitudMontoTotal)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

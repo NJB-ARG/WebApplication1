@@ -1,0 +1,114 @@
+﻿@model WebApplication1.Models.ViewModels.Cliente
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Cliente</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaApellido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaApellido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaTelefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaTelefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaDireccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaDireccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaCUIL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaCUIL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaDni)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaDni)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaMail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaMail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaFechaNacimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaFechaNacimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaSexo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaSexo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaNacionalidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaNacionalidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PersonaLocalidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PersonaLocalidad)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PersonaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

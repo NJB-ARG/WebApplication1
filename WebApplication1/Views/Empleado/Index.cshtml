@@ -1,0 +1,111 @@
+﻿@model IEnumerable<WebApplication1.Models.ViewModels.Empleado>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonaNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonaApellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonaTelefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonaDireccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonaCUIL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonaDni)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonaMail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonaFechaNacimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonaSexo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonaNacionalidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PersonaLocalidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpleadoSector)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpleadoTipo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpleadoNivel)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonaNombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonaApellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonaTelefono)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonaDireccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonaCUIL)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonaDni)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonaMail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonaFechaNacimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonaSexo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonaNacionalidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PersonaLocalidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpleadoSector)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpleadoTipo)
+        </td>        
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpleadoNivel)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PersonaID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PersonaID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PersonaID })
+        </td>
+    </tr>
+}
+
+</table>

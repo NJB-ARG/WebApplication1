@@ -1,0 +1,65 @@
+﻿@model IEnumerable<WebApplication1.Models.Perfil>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PerfilDescripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Perfil_Accion.AccionNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Perfil_Controladora.ControladoraNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Perfil_Rol.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PerfilInicial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PerfilOwerRequerido)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PerfilDescripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Perfil_Accion.AccionNombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Perfil_Controladora.ControladoraNombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Perfil_Rol.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PerfilInicial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PerfilOwerRequerido)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.PerfilID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.PerfilID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PerfilID })
+            </td>
+        </tr>
+    }
+
+</table>
+

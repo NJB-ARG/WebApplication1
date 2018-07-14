@@ -1,0 +1,56 @@
+﻿@model WebApplication1.Models.RolOperaciones
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>RolOperaciones</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.RolOperaciones_Operacion.OperacionDescripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RolOperaciones_Operacion.OperacionDescripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RolOperaciones_Rol.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RolOperaciones_Rol.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RolOperacionesOwerRequired)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RolOperacionesOwerRequired)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RolOperacionesActivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RolOperacionesActivo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

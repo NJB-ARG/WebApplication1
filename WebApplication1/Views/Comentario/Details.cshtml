@@ -1,0 +1,114 @@
+﻿@model WebApplication1.Models.Comentario
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Comentario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @{ if (ViewBag.Controladora == "Solicitud")
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.Pagina_Solicitud.SolicitudID)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Pagina_Solicitud.SolicitudID)
+                </dd>
+            }
+            else if (ViewBag.Controladora == "Orden")
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.Pagina_Orden.OrdenID)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Pagina_Orden.OrdenID)
+                </dd>
+            }
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaginaNumero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaginaNumero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaginaNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaginaNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaginaValidada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaginaValidada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaginaTipoDocumento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaginaTipoDocumento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComentarioNum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComentarioNum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComentarioFecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComentarioFecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComentarioPersona)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComentarioPersona)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ComentarioTexto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ComentarioTexto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PaginaID }) |
+    @*@Html.ActionLink("Back to List", "Index")*@
+
+    @{ if (ViewBag.Controladora == "Solicitud")
+        {
+            @Html.ActionLink("Vovler a la Solicitud", "Edit", "Solicitud", new { id = ViewBag.DocumentoID }, null)
+        }
+        else if (ViewBag.Controladora == "Orden")
+        {
+            @Html.ActionLink("Vovler a la Orden", "Edit", "Orden", new { id = ViewBag.DocumentoID }, null)
+        }
+    }
+</p>

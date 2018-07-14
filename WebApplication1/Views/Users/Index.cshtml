@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+@if (ViewBag.displayMenu == "Yes")
+{
+    <h3>Welcome <strong>@ViewBag.Name</strong> to the Administrator Sesion!</h3>
+}
+else
+{
+    <h3>  Welcome <strong>@ViewBag.Name</strong> :) </h3>
+
+} 
+<p>
+    @Html.ActionLink("Go to your Home Page", "Index", "Home")
+</p>

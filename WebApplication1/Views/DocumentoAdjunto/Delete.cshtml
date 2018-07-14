@@ -1,0 +1,103 @@
+﻿@model WebApplication1.Models.ViewModels.DocumentoAdjunto
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>DocumentoAdjunto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @{ if (ViewBag.Controladora == "Solicitud")
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.DocumentoAdjunto_Solicitud.SolicitudID)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DocumentoAdjunto_Solicitud.SolicitudID)
+                </dd>
+            }
+            else if (ViewBag.Controladora == "Orden")
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.DocumentoAdjunto_Orden.OrdenID)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.DocumentoAdjunto_Orden.OrdenID)
+                </dd>
+            }
+        }        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DocumentoAdjuntoFechaCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocumentoAdjuntoFechaCreacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DocumentoAdjuntoFechaAprobacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocumentoAdjuntoFechaAprobacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DocumentoAdjuntoCargado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocumentoAdjuntoCargado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DocumentoAdjuntoAprobado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocumentoAdjuntoAprobado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DocumentoAdjuntoComentario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocumentoAdjuntoComentario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DocumentoAdjuntoTipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DocumentoAdjuntoTipo)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @*@Html.ActionLink("Back to List", "Index")*@
+            @{ if (ViewBag.Controladora == "Solicitud")
+                {
+                    @Html.ActionLink("Vovler a la Solicitud", "Edit", "Solicitud", new { id = ViewBag.DocumentoID }, null)
+                }
+                else if (ViewBag.Controladora == "Orden")
+                {
+                    @Html.ActionLink("Vovler a la Orden", "Edit", "Orden", new { id = ViewBag.DocumentoID }, null)
+                }
+            }
+        </div>
+    }
+</div>

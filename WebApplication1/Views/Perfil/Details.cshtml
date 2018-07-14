@@ -1,0 +1,66 @@
+﻿@model WebApplication1.Models.Perfil
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Perfil</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Perfil_Accion.AccionNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Perfil_Accion.AccionNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Perfil_Controladora.ControladoraNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Perfil_Controladora.ControladoraNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Perfil_Rol.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Perfil_Rol.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PerfilDescripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PerfilDescripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PerfilInicial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PerfilInicial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PerfilOwerRequerido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PerfilOwerRequerido)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PerfilID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

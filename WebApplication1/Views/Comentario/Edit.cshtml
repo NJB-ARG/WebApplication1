@@ -1,0 +1,149 @@
+﻿@model WebApplication1.Models.Comentario
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Comentario</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.PaginaID)
+
+        @{ if (ViewBag.Controladora == "Solicitud")
+            {
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SolicitudID, "SolicitudID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @*@Html.DropDownList("SolicitudID", null, htmlAttributes: new { @class = "form-control" })*@
+                        @Html.Raw(ViewBag.DocumentoID)
+                        @Html.HiddenFor(model => model.SolicitudID)
+                        @Html.ValidationMessageFor(model => model.SolicitudID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
+            else if (ViewBag.Controladora == "Orden")
+            {
+                <div class="form-group">
+                    @Html.LabelFor(model => model.OrdenID, "OrdenID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @*@Html.DropDownList("OrdenID", null, htmlAttributes: new { @class = "form-control" })*@
+                        @Html.Raw(ViewBag.DocumentoID)
+                        @Html.HiddenFor(model => model.OrdenID)
+                        @Html.ValidationMessageFor(model => model.OrdenID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            }
+        }
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaginaNumero, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.PaginaNumero, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.Raw(ViewBag.PaginaNumero)
+                @Html.HiddenFor(model => model.PaginaNumero)
+                @Html.ValidationMessageFor(model => model.PaginaNumero, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaginaNombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.PaginaNombre, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.Raw(ViewBag.PaginaNombre)
+                @Html.HiddenFor(model => model.PaginaNombre)
+                @Html.ValidationMessageFor(model => model.PaginaNombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaginaValidada, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.PaginaValidada)
+                    @Html.ValidationMessageFor(model => model.PaginaValidada, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaginaTipoDocumento, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.PaginaTipoDocumento, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.Raw(ViewBag.PaginaTipoDocumento)
+                @Html.HiddenFor(model => model.PaginaTipoDocumento)
+                @Html.ValidationMessageFor(model => model.PaginaTipoDocumento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaginaTipo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.PaginaTipo, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.Raw(ViewBag.PaginaTipo)
+                @Html.HiddenFor(model => model.PaginaTipo)
+                @Html.ValidationMessageFor(model => model.PaginaTipo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ComentarioNum, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ComentarioNum, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ComentarioNum, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ComentarioFecha, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.ComentarioFecha, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.DisplayFor(model => model.ComentarioFecha)
+                @Html.ValidationMessageFor(model => model.ComentarioFecha, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ComentarioPersona, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.ComentarioPersona, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.Raw(ViewBag.ComentarioPersona)
+                @Html.HiddenFor(model => model.ComentarioPersona)
+                @Html.ValidationMessageFor(model => model.ComentarioPersona, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ComentarioTexto, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ComentarioTexto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ComentarioTexto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @*@Html.ActionLink("Back to List", "Index")*@
+    @{ if (ViewBag.Controladora == "Solicitud")
+        {
+            @Html.ActionLink("Vovler a la Solicitud", "Edit", "Solicitud", new { id = ViewBag.DocumentoID }, null)
+        }
+        else if (ViewBag.Controladora == "Orden")
+        {
+            @Html.ActionLink("Vovler a la Orden", "Edit", "Orden", new { id = ViewBag.DocumentoID }, null)
+        }
+    }
+</div>

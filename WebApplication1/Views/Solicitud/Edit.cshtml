@@ -1,0 +1,504 @@
+﻿@using WebApplication1.Models.ViewModels
+@model WebApplication1.Models.ViewModels.Solicitud
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#sectionA">Datos Solicitud</a></li>
+        <li><a data-toggle="tab" href="#sectionB">Estado Solicitud</a></li>
+        <li><a data-toggle="tab" href="#sectionC">Pagos Solicitud</a></li>
+        <li><a data-toggle="tab" href="#sectionD">Documentos Adjuntos Solicitud</a></li>
+        <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">Datos Adicionales<b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                <li><a data-toggle="tab" href="#dropdown1">Datos de Contacto</a></li>
+                <li><a data-toggle="tab" href="#dropdown2">Propuesta Comercial</a></li>
+            </ul>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div id="sectionA" class="tab-pane fade in active">
+
+            <div class="form-horizontal">
+                <h4>Solicitud</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.SolicitudID)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SolicitudID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DisplayFor(model => model.SolicitudID)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SolicitudNum, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.SolicitudNum, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SolicitudNum, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SolicitudDescripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.SolicitudDescripcion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SolicitudDescripcion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.EmpleadoID, "EmpleadoID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("EmpleadoID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.EmpleadoID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ProspectoID, "ProspectoID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("ProspectoID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ProspectoID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ClienteID, "ClienteID", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("ClienteID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ClienteID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @*<div class="form-group">
+                        @Html.LabelFor(model => model.SolicitudTipoSolicitante, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.SolicitudTipoSolicitante, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.SolicitudTipoSolicitante, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+                @* tipo de solicitante en dropdownlist *@
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SolicitudTipoSolicitante, "Tipo Solicitante", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("SolicitudTipoSolicitante", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SolicitudTipoSolicitante, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SolicitudFecCreacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.SolicitudFecCreacion, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SolicitudFecCreacion, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SolicitudFecVencimiento, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.SolicitudFecVencimiento, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.SolicitudFecVencimiento, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Solicitud_Sucursal.SucursalNombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @*@Html.EditorFor(model => model.Solicitud_Sucursal.SucursalNombre, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.DropDownList("SucursalID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Solicitud_Sucursal.SucursalNombre, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SolicitudEstado, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EnumDropDownListFor(model => model.SolicitudEstado, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.SolicitudEstado, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SolicitudMontoTotal, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @*@Html.EditorFor(model => model.SolicitudMontoTotal, new { htmlAttributes = new { @class = "form-control" } })*@
+                        @Html.DisplayFor(model => model.SolicitudMontoTotal)
+                        @Html.ValidationMessageFor(model => model.SolicitudMontoTotal, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <hr />
+                <h4>Solicitud Detalle: Líneas de la solicitud</h4>
+                <hr />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @*@Html.DisplayNameFor(model => model.Solicitud_LineasSolicitud)*@
+                        Agregar Líneas
+                    </dt>
+                    <dd>
+                        <p>
+                            @*@Html.ActionLink("Create New", "Create", "LineaSolicitud")*@
+                            @Html.ActionLink("Create New", "Create", "LineaSolicitud", new { solicitudID = Model.SolicitudID }, null) |
+                        </p>
+                        <table class="table">
+                            <tr>
+                                <th>Numero</th>
+                                <th>Producto</th>
+                                <th>Precio Unitario</th>
+                                <th>Cantidad</th>
+                                <th>Monto</th>
+                            </tr>
+                            @foreach (var item in Model.Solicitud_LineasSolicitud)
+                            {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LineaSolicitudNum)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LineaSolicitud_Producto.ProductoDesc)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LineaSolicitud_Producto.ProductoPrecio)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LineaSolicitudCantidad)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LineaSolicitudMonto)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", "LineaSolicitud", new { id = item.LineaSolicitudID, solicitudID = Model.SolicitudID, Controladora = "Solicitud" }, null) |
+                                    @Html.ActionLink("Details", "Details", "LineaSolicitud", new { id = item.LineaSolicitudID, solicitudID = Model.SolicitudID }, null) |
+                                    @Html.ActionLink("Delete", "Delete", "LineaSolicitud", new { id = item.LineaSolicitudID, solicitudID = Model.SolicitudID }, null)
+                                </td>
+                            </tr>
+                            }
+                        </table>
+                    </dd>
+                </dl>
+
+            </div>
+
+        </div>
+
+        <div id="sectionB" class="tab-pane fade">
+
+            <div class="form-horizontal">
+                <br />
+                <dl class="dl-horizontal">
+                    <dt>
+                        @*@Html.DisplayNameFor(model => model.Solicitud_Paginas)*@
+                        Gestionar Estado
+                    </dt>
+                    <dd>
+                        <table class="table">
+                            <tr>
+                                <th>Numero</th>
+                                <th>Nombre</th>
+                                <th>Validación</th>
+                            </tr>                          
+                            @{                                    
+                                List<PaginaValidadaViewModel> paginas = ViewBag.Paginas;
+
+                                foreach (var pagina in paginas)
+                                {
+                                    @:<tr>
+                                        @:<td>                                            
+                                                @pagina.PaginaNumero
+                                        @:</td> 
+                                        @:<td>                                            
+                                                @pagina.Nombre
+                                        @:</td>
+                                        @:<td>
+                                            <input type="checkbox"
+                                                name="selectedPaginas"
+                                                value="@pagina.PaginaID"
+                                                @(Html.Raw(pagina.Validada ? "checked=\"checked\"" : "")) />                                               
+                                        @:</td>                                                                               
+                                    @:</tr>
+                                }
+                                @:
+                             }
+                        </table>
+                    </dd>
+                </dl>
+
+            </div>
+
+            <h5>Comentarios</h5>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @*@Html.DisplayNameFor(model => model.Solicitud_Pagos)*@
+                </dt>
+                <dd>
+                    <p>                        
+                        @Html.ActionLink("Create New", "Create", "Comentario", new { DocumentoID = Model.SolicitudID, Controladora = "Solicitud" }, null) |
+                    </p>
+                    <table class="table">
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Numero</th>
+                            <th>Persona</th>
+                            <th>Comentario Tipo</th>
+                        </tr>
+                        @{
+                            SolicitudPaginasViewModel paginasSol = ViewBag.PaginasSol;
+
+                            if (paginasSol.Comentarios != null)
+                            {
+                                foreach (var item in paginasSol.Comentarios)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ComentarioFecha)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ComentarioNum)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ComentarioPersona)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ComentarioTexto)
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Edit", "Edit", "Comentario", new { id = item.PaginaID, DocumentoID = Model.SolicitudID, Controladora = "Solicitud" }, null) |
+                                            @Html.ActionLink("Details", "Details", "Comentario", new { id = item.PaginaID, DocumentoID = Model.SolicitudID, Controladora = "Solicitud" }, null) |
+                                            @Html.ActionLink("Delete", "Delete", "Comentario", new { id = item.PaginaID, DocumentoID = Model.SolicitudID, Controladora = "Solicitud" }, null)
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        }
+                    </table>
+                </dd>
+            </dl>
+
+        </div>
+
+        <div id="sectionC" class="tab-pane fade">
+            @*<p>Tab Ordenes content…</p>*@
+            <h5>Pagos de la Solicitud</h5>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @*@Html.DisplayNameFor(model => model.Solicitud_Pagos)*@
+                </dt>
+                <dd>
+                    <p>
+                        @Html.ActionLink("Create New", "Create", "Pago", new { solicitudID = Model.SolicitudID }, null) |
+                    </p>
+                    <table class="table">
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Descripcion</th>
+                            <th>Monto</th>
+                            <th>Cuenta Pago</th>
+                        </tr>
+                        @foreach (var item in Model.Solicitud_Pagos)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PagoFecha)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PagoDescripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PagoMonto)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Pago_Cuenta.CuentaDesc)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", "Pago", new { id = item.PagoID, solicitudID = Model.SolicitudID }, null) |
+                                    @Html.ActionLink("Details", "Details", "Pago", new { id = item.PagoID, solicitudID = Model.SolicitudID }, null) |
+                                    @Html.ActionLink("Delete", "Delete", "Pago", new { id = item.PagoID, solicitudID = Model.SolicitudID }, null)
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </dd>
+            </dl>
+        </div>
+
+        <div id="sectionD" class="tab-pane fade">
+            @*<p>Tab Ordenes content…</p>*@
+            <h5>Archivos de la Solicitud</h5>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @*@Html.DisplayNameFor(model => model.Solicitud_Pagos)*@
+                </dt>
+                <dd>
+                    <p>
+                        @Html.ActionLink("Create New", "Create", "DocumentoAdjunto", new { DocumentoID = Model.SolicitudID, Controladora = "Solicitud" }, null) |
+                    </p>
+                    <table class="table">
+                        <tr>
+                            <th>ID</th>
+                            <th>Fecha Creación</th>
+                            <th>Fecha Aprobación</th>
+                            <th>Descripcion</th>
+                            <th>Tipo</th>
+                            <th>Cargado?</th>
+                            <th>Aprobado?</th>
+                        </tr>
+                        @foreach (var item in Model.Solicitud_DocumentosAdjuntos)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DocumentoAdjuntoID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DocumentoAdjuntoFechaCreacion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DocumentoAdjuntoFechaAprobacion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DocumentoAdjuntoComentario)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DocumentoAdjuntoTipo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DocumentoAdjuntoCargado)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DocumentoAdjuntoAprobado)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", "DocumentoAdjunto", new { id = item.DocumentoAdjuntoID, DocumentoID = Model.SolicitudID, Controladora = "Solicitud" }, null) |
+                                    @Html.ActionLink("Details", "Details", "DocumentoAdjunto", new { id = item.DocumentoAdjuntoID, DocumentoID = Model.SolicitudID, Controladora = "Solicitud" }, null) |
+                                    @Html.ActionLink("Delete", "Delete", "DocumentoAdjunto", new { id = item.DocumentoAdjuntoID, DocumentoID = Model.SolicitudID, Controladora = "Solicitud" }, null)
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                </dd>
+            </dl>
+        </div>
+
+        <div id="dropdown1" class="tab-pane fade">
+            @*<p>Dropdown 1 content…</p>*@
+            <h5>Datos de Contacto</h5>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @*@Html.DisplayNameFor(model => model.Solicitud_Pagos)*@
+                </dt>
+                <dd>
+                    <p>
+                        @Html.ActionLink("Create New", "Create", "DatosContacto", new { DocumentoID = Model.SolicitudID, Controladora = "Solicitud" }, null) |
+                    </p>
+                    <table class="table">
+                        <tr>
+                            <th>Contacto Nombre</th>
+                            <th>Contacto Mail</th>
+                            <th>Contacto Teléfono</th>
+                        </tr>
+                        @{
+                            SolicitudPaginasViewModel paginasSol2 = ViewBag.PaginasSol;
+
+                            if (paginasSol2.DatosContacto != null)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => paginasSol2.DatosContacto.DatosContactoNombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => paginasSol2.DatosContacto.DatosContactoMail)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => paginasSol2.DatosContacto.DatosContactoTel)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", "DatosContacto", new { id = paginasSol2.DatosContacto.PaginaID, DocumentoID = Model.SolicitudID, Controladora = "Solicitud" }, null) |
+                                        @Html.ActionLink("Details", "Details", "DatosContacto", new { id = paginasSol2.DatosContacto.PaginaID, DocumentoID = Model.SolicitudID, Controladora = "Solicitud" }, null) |
+                                        @Html.ActionLink("Delete", "Delete", "DatosContacto", new { id = paginasSol2.DatosContacto.PaginaID, DocumentoID = Model.SolicitudID, Controladora = "Solicitud" }, null)
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                </dd>
+            </dl>
+        </div>
+        <div id="dropdown2" class="tab-pane fade">            
+            <h5>Propuesta Comercial</h5>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @*@Html.DisplayNameFor(model => model.Solicitud_Pagos)*@
+                </dt>
+                <dd>
+                    <p>
+                        @Html.ActionLink("Create New", "Create", "PropuestaComercial", new { DocumentoID = Model.SolicitudID, Controladora = "Solicitud" }, null) |
+                    </p>
+                    <table class="table">
+                        <tr>
+                            <th>Forma Pago</th>
+                            <th>Plazo Entrega</th>
+                            <th>Tipo Factura</th>
+                        </tr>
+                        @{
+                            SolicitudPaginasViewModel paginasSol3 = ViewBag.PaginasSol;
+
+                            if (paginasSol3.PropuestaComercial != null)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => paginasSol3.PropuestaComercial.PropuestaComercialFormaPago)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => paginasSol3.PropuestaComercial.PropuestaComercialPlazoEntrega)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => paginasSol3.PropuestaComercial.PropuestaComercialPrecio)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => paginasSol3.PropuestaComercial.PropuestaComercialTipoFactura)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "Edit", "PropuestaComercial", new { id = paginasSol3.PropuestaComercial.PaginaID, DocumentoID = Model.SolicitudID, Controladora = "Solicitud" }, null) |
+                                        @Html.ActionLink("Details", "Details", "PropuestaComercial", new { id = paginasSol3.PropuestaComercial.PaginaID, DocumentoID = Model.SolicitudID, Controladora = "Solicitud" }, null) |
+                                        @Html.ActionLink("Delete", "Delete", "PropuestaComercial", new { id = paginasSol3.PropuestaComercial.PaginaID, DocumentoID = Model.SolicitudID, Controladora = "Solicitud" }, null)
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                </dd>
+            </dl>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar Solicitud" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

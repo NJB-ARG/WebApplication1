@@ -1,0 +1,75 @@
+﻿@model IEnumerable<WebApplication1.Models.ViewModels.DocumentoAdjunto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentoAdjunto_Orden.OrdenID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentoAdjunto_Solicitud.SolicitudID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentoAdjuntoFechaCreacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentoAdjuntoFechaAprobacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentoAdjuntoCargado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentoAdjuntoAprobado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentoAdjuntoComentario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentoAdjuntoTipo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocumentoAdjunto_Orden.OrdenID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocumentoAdjunto_Solicitud.SolicitudID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocumentoAdjuntoFechaCreacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocumentoAdjuntoFechaAprobacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocumentoAdjuntoCargado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocumentoAdjuntoAprobado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocumentoAdjuntoComentario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocumentoAdjuntoTipo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DocumentoAdjuntoID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DocumentoAdjuntoID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DocumentoAdjuntoID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,173 @@
+﻿@model IEnumerable<WebApplication1.Models.ViewModels.Solicitud>
+@{
+    ViewBag.Title = "Lista de Solicitudes de Venta";
+}
+
+<h2>Gestionar Solicitudes de Venta</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+    <!-- MODS NORBER INI -->
+    @using (Html.BeginForm("Index", "Solicitud", FormMethod.Get))
+    {
+    <p>
+        @Html.DisplayNameFor(model => model.SolicitudEstado): @Html.DropDownList("solEst", "Todos")        
+        @Html.DisplayNameFor(model => model.SolicitudDescripcion): @Html.TextBox("solDesc")
+        Empleado : @Html.TextBox("solEmp")
+        @*@Html.DisplayNameFor(model => model.SolicitudTipoSolicitante) : @Html.DropDownList("SolicitudTipoSolicitante", "Todos")<br /><br />*@
+        Solicitante : @Html.TextBox("solSol")<br /><br />
+        @Html.DisplayNameFor(model => model.Solicitud_Sucursal.SucursalNombre) : @Html.TextBox("solSuc")
+        @Html.DisplayNameFor(model => model.SolicitudNum) : @Html.TextBox("solNum")<br /><br />
+        <input type="submit" value="Filter" />
+    </p>
+    }
+ </p>
+    <!-- MODS NORBER FIN -->
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SolicitudID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SolicitudNum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SolicitudDescripcion)
+            </th>
+            <th>
+                Cliente / Prospecto
+            </th>
+            <th>
+                Empleado
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Solicitud_Empleado.FullName)
+            </th>*@
+            @*<th>
+                @Html.DisplayNameFor(model => model.Solicitud_Prospecto.FullName)
+            </th>*@
+            @*<th>
+                @Html.DisplayNameFor(model => model.Solicitud_Cliente.FullName)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.SolicitudTipoSolicitante)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SolicitudFecCreacion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SolicitudFecVencimiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Solicitud_Sucursal.SucursalNombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SolicitudEstado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SolicitudMontoTotal)
+            </th>
+            <th>
+                Cuentas
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SolicitudID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SolicitudNum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SolicitudDescripcion)
+                </td>
+                @*Agregado INI*@
+                <td>
+                    @if (item.SolicitudTipoSolicitante == "2")
+                    {
+                        @Html.DisplayFor(modelItem => item.Solicitud_Cliente.FullName)
+                    }
+                    else if (item.SolicitudTipoSolicitante == "1")
+                    {
+                        @Html.DisplayFor(modelItem => item.Solicitud_Prospecto.FullName)
+                    }
+                    else
+                    {
+                        <p>Sin Tipo</p>
+                    }
+                    @*@if (item.GetType() == typeof(WebApplication1.Models.ViewModels.Cliente))
+                        {
+                            @Html.DisplayFor(modelItem => item.Solicitud_Cliente.FullName)
+                        }
+                        else if (item.GetType() == typeof(WebApplication1.Models.ViewModels.Prospecto))
+                        {
+                            @Html.DisplayFor(modelItem => item.Solicitud_Prospecto.FullName)
+                        }
+                        else
+                        {
+                            <p>Sin Tipo</p>
+                        }*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Solicitud_Empleado.FullName)
+                </td>
+                @*Agregado FIN*@
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.EmpleadoID)
+                </td>*@
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.ProspectoID)
+                </td>*@
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.ClienteID)
+                </td>*@
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.SolicitudTipoSolicitante)*@
+                    @if (item.SolicitudTipoSolicitante == "2")
+                    {
+                        <p>Cliente</p>
+                    }
+                    else if (item.SolicitudTipoSolicitante == "1")
+                    {
+                        <p>Prospecto</p>
+                    }
+                    else
+                    {
+                        <p>Sin Tipo</p>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SolicitudFecCreacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SolicitudFecVencimiento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Solicitud_Sucursal.SucursalNombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SolicitudEstado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SolicitudMontoTotal)
+                </td>
+                <td>
+                    @{
+                        foreach (var pago in item.Solicitud_Pagos)
+                        {
+                            @pago.Pago_Cuenta.CuentaID @:  @pago.Pago_Cuenta.CuentaDesc <br />
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.SolicitudID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.SolicitudID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.SolicitudID })
+                </td>
+            </tr>
+        }
+    </table>

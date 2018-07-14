@@ -1,0 +1,57 @@
+﻿@model IEnumerable<WebApplication1.Models.ViewModels.Pago>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Pago_Cuenta.CuentaTitular)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pago_Solicitud.SolicitudDescripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PagoFecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PagoDescripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PagoMonto)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pago_Cuenta.CuentaTitular)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pago_Solicitud.SolicitudDescripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PagoFecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PagoDescripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PagoMonto)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PagoID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PagoID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PagoID })
+        </td>
+    </tr>
+}
+
+</table>
