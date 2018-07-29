@@ -292,6 +292,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Pattern_Builder.cs" />
     <Compile Include="Models\Pattern_FactoryMethod.cs" />
+    <Compile Include="Models\Pattern_State.cs" />
     <Compile Include="Models\SeguridadModels.cs" />
     <Compile Include="Models\ViewModels\IndexViewModels.cs" />
     <Compile Include="Models\ViewModels\OrdenViewModel.cs" />
@@ -307,8 +308,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Repository\IdentityRepository.cs" />
+    <Compile Include="Repository\OrdVentaRepository.cs" />
     <Compile Include="Repository\SolVentaRepository.cs" />
     <Compile Include="Service\IdentityService.cs" />
+    <Compile Include="Service\OrdVentaService.cs" />
     <Compile Include="Service\SolVentaService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

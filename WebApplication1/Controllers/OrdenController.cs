@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using WebApplication1.Models;
 using WebApplication1.Models.ViewModels;
+using WebApplication1.Repository;
+using WebApplication1.Service;
 
 namespace WebApplication1.Controllers
 {
@@ -15,6 +17,20 @@ namespace WebApplication1.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        //*********************
+        private IOrdVentaService _service;
+
+        public OrdenController()
+        {
+            _service = new OrdVentaService(this.ModelState, new OrdVentaRepository());
+        }
+
+        public OrdenController(IOrdVentaService service)
+        {
+            _service = service;
+        }
+        //*********************
+        
         // GET: Orden
         public ActionResult Index()
         {
@@ -44,12 +60,13 @@ namespace WebApplication1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Solicitud solicitud = db.Solicituds.Find(idSolicitud);
+            //Solicitud solicitud = db.Solicituds.Find(idSolicitud);
+            Solicitud solicitud = _service.BuscarSolVenta(idSolicitud);
             if (solicitud == null)
             {
                 return HttpNotFound();
             }
-
+           
             //ViewBag.SolicitudID = new SelectList(db.Solicituds, "SolicitudID", "SolicitudOwnerID");
             ViewBag.SolicitudID = idSolicitud;          
             ViewBag.LineasOrden = solicitud.Solicitud_LineasSolicitud;
@@ -59,10 +76,28 @@ namespace WebApplication1.Controllers
         // POST: Orden/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost, ActionName("Create")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "OrdenID,SolicitudID")] Orden orden, int? idSolicitud)
-        {
+        public ActionResult CreatePost(int? idSolicitud)
+        {                        
+
+            if (idSolicitud == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //Solicitud solicitud = db.Solicituds.Find(idSolicitud);
+            Solicitud solicitud = _service.BuscarSolVenta(idSolicitud);
+            if (solicitud == null)
+            {
+                return HttpNotFound();
+            }
+
+            Orden orden = new Orden
+            {
+                Orden_Solicitud = solicitud,
+                SolicitudID = solicitud.SolicitudID
+            };
+
             if (ModelState.IsValid)
             {
                 //******
@@ -92,12 +127,13 @@ namespace WebApplication1.Controllers
                 //LLAMADA PATRONES-FIN
                 //******
 
-                db.Ordens.Add(orden);
-                db.SaveChanges();
+                //db.Ordens.Add(orden);
+                //db.SaveChanges();
+                _service.CreateOrdVenta(orden);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SolicitudID = new SelectList(db.Solicituds, "SolicitudID", "SolicitudOwnerID", orden.SolicitudID);
+            ViewBag.SolicitudID = new SelectList(db.Solicituds.Where(r => r.SolicitudID == solicitud.SolicitudID), "SolicitudID", "SolicitudOwnerID", orden.SolicitudID);
             return View(orden);
         }
 

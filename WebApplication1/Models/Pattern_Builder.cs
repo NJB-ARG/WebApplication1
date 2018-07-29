@@ -198,7 +198,7 @@ namespace WebApplication1.Models
     /// <summary>
     /// The 'Product' class
     /// </summary>
-   public class Documento
+   public class Documento: Pagina
     {
         public int DocumentoID { get; set; }
         private int _documentoNumero;

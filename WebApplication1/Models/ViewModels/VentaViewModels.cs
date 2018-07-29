@@ -22,7 +22,7 @@ namespace WebApplication1.Models.ViewModels
             Solicitud_Pagos = new List<Pago>();
             Solicitud_DocumentosAdjuntos = new List<DocumentoAdjunto>();
             Solicitud_Facturas = new List<FacturaCliente>();
-    }
+        }
 
         //[Key, ForeignKey("SolicitudVenta")]
         [Display(Name = "ID")]
