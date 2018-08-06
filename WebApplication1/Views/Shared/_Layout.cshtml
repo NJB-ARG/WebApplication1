@@ -17,7 +17,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Open MindedSoft", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -26,13 +26,24 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@                    
                     @if (Request.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Solicitudes", "Index", "Solicitud")</li>
-                        <li>@Html.ActionLink("Ordenes", "Index", "Orden")</li>
+                        @*<li>@Html.ActionLink("Solicitudes", "Index", "Solicitud")</li>
+                        <li>@Html.ActionLink("Ordenes", "Index", "Orden")</li>*@
                         @*<li>@Html.ActionLink("Clientes", "Index", "Cliente")</li>
                         <li>@Html.ActionLink("Empleados", "Index", "Empleado")</li>
                         <li>@Html.ActionLink("Prospectos", "Index", "Prospecto")</li>*@
                         @*<li>@Html.ActionLink("Cuentas", "Index", "Cuenta")</li>*@
                         <li>@Html.ActionLink("Productos", "Index", "Producto")</li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Personas
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="@Url.Action("Index", "Cliente")">Clientes</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "Tarea")">Tareas</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li>
                     }
                     @*Agregado Ini-(SECURITY)*@
                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))

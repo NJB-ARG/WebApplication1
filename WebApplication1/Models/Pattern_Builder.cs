@@ -182,6 +182,11 @@ namespace WebApplication1.Models
         {
             //Llamada a Template Method que usa Factory Method
             OrdenDetalle ordenDetalle = new OrdenDetalle();
+
+
+            //agrego el objeto "PartesDocumento" al diccionario de DOCUMENTO
+            documento["Test"] = ordenDetalle;
+
             //Leer paginas que devolvio el factory method 
             foreach (Pagina paginaOrdenDetalle in ordenDetalle.Paginas)
             {

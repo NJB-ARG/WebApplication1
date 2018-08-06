@@ -1,0 +1,100 @@
+﻿@model WebApplication1.Models.ViewModels.Tarea
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Mi ToDo List</h2>
+
+@*<p>
+    @Html.ActionLink("Create Nueva Tarea", "Create")
+</p>*@
+
+<div id="tableDiv"></div>
+
+<div id="todoCreateForm">
+    @using (Ajax.BeginForm("AJAXCreate", "Tarea", new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "POST",
+        UpdateTargetId = "tableDiv"
+    }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.LabelFor(model => model.TareaDescripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.TareaDescripcion, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TareaDescripcion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TareaDescripcion2, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TareaDescripcion2, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TareaDescripcion2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TareaFechaIni, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TareaFechaIni, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TareaFechaIni, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TareaFechaFin, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TareaFechaFin, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TareaFechaFin, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TareaModulo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.TareaModulo, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TareaModulo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        if (Request.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <p>Asigne un Empleado a la Tarea</p>
+            <div class="form-group">
+                @Html.LabelFor(model => model.EmpleadoID, "EmpleadoID", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("EmpleadoID", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.EmpleadoID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SolicitudID, "SolicitudID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("SolicitudID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SolicitudID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OrdenID, "OrdenID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("OrdenID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.OrdenID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    }
+
+</div>
+
+@section Scripts {
+    
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script> 
+    <script src="~/Custom_Scripts/BuildTableTarea.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    }

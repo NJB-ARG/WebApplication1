@@ -250,6 +250,7 @@
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\SolicitudController.cs" />
+    <Compile Include="Controllers\TareaController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="CustomFilters\AuthLogAttribute.cs" />
@@ -260,31 +261,6 @@
     </Compile>
     <Compile Include="HtmlHelperExtensions\Functions.cs" />
     <Compile Include="HtmlHelperExtensions\Helpers.cs" />
-    <Compile Include="Migrations\201711202105434_InitialCreate.cs" />
-    <Compile Include="Migrations\201711202105434_InitialCreate.Designer.cs">
-      <DependentUpon>201711202105434_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201711210107524_mig0.cs" />
-    <Compile Include="Migrations\201711210107524_mig0.Designer.cs">
-      <DependentUpon>201711210107524_mig0.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712090112070_mig01.cs" />
-    <Compile Include="Migrations\201712090112070_mig01.Designer.cs">
-      <DependentUpon>201712090112070_mig01.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801282029057_mig2.cs" />
-    <Compile Include="Migrations\201801282029057_mig2.Designer.cs">
-      <DependentUpon>201801282029057_mig2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802021532395_mig3.cs" />
-    <Compile Include="Migrations\201802021532395_mig3.Designer.cs">
-      <DependentUpon>201802021532395_mig3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201802021944454_userID_Status.cs" />
-    <Compile Include="Migrations\201802021944454_userID_Status.Designer.cs">
-      <DependentUpon>201802021944454_userID_Status.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\PaginaModels.cs" />
@@ -320,6 +296,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Custom_Scripts\AddCheckBoxListener.js" />
+    <Content Include="Custom_Scripts\BuildTableTarea.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -351,6 +329,8 @@
     <Content Include="Scripts\jquery-3.2.1.slim.js" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -502,37 +482,22 @@
     <Content Include="Views\Orden\Details.cshtml" />
     <Content Include="Views\Orden\Edit.cshtml" />
     <Content Include="Views\Orden\Index.cshtml" />
+    <Content Include="Views\Tarea\Create.cshtml" />
+    <Content Include="Views\Tarea\Delete.cshtml" />
+    <Content Include="Views\Tarea\Details.cshtml" />
+    <Content Include="Views\Tarea\Edit.cshtml" />
+    <Content Include="Views\Tarea\Index.cshtml" />
+    <Content Include="Views\Tarea\_ToDoTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
-    <Folder Include="Views\PartialViews\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
     <None Include="Project_Readme.html" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201711202105434_InitialCreate.resx">
-      <DependentUpon>201711202105434_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201711210107524_mig0.resx">
-      <DependentUpon>201711210107524_mig0.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712090112070_mig01.resx">
-      <DependentUpon>201712090112070_mig01.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801282029057_mig2.resx">
-      <DependentUpon>201801282029057_mig2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802021532395_mig3.resx">
-      <DependentUpon>201802021532395_mig3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201802021944454_userID_Status.resx">
-      <DependentUpon>201802021944454_userID_Status.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

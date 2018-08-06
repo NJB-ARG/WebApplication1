@@ -12,7 +12,7 @@ namespace WebApplication1.Models
     /// <summary>
     /// The 'Creator' abstract class
     /// </summary>
-    public abstract class PartesDocumento
+    public abstract class PartesDocumento : Pagina
     {
         private List<Pagina> _paginas = new List<Pagina>();
 

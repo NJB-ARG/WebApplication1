@@ -44,7 +44,8 @@ namespace WebApplication1.Controllers
                 ApplicationDbContext context = new ApplicationDbContext();
                 var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
                 var s = UserManager.GetRoles(user.GetUserId());
-                if (s[0].ToString() == "Admin")
+
+                if (UserManager.IsInRole(user.GetUserId(), "Admin"))
                 {
                     return true;
                 }
@@ -52,6 +53,18 @@ namespace WebApplication1.Controllers
                 {
                     return false;
                 }
+
+                //if (s.Count() != 0)
+                //{
+                //    if (s[0].ToString() == "Admin")
+                //    {
+                //        return true;
+                //    }
+                //    else
+                //    {
+                //        return false;
+                //    }
+                //}
             }
             return false;
         }

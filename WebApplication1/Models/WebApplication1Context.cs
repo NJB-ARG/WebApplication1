@@ -27,7 +27,7 @@ namespace WebApplication1.Models
        // public System.Data.Entity.DbSet<WebApplication1.Models.DatosSolicitudPagina> DatosSolicitudPaginas { get; set; }
 
         //Entidades
-        //public System.Data.Entity.DbSet<WebApplication1.Models.ViewModels.Venta> Ventas { get; set; }
+        //public System.Data.Entity.DbSet<WebApplication1.Models.ViewModels.DocumentoVenta> Ventas { get; set; }
 
         public System.Data.Entity.DbSet<WebApplication1.Models.ViewModels.Orden> Ordens { get; set; }
 

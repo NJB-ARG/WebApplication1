@@ -1,0 +1,130 @@
+﻿@model WebApplication1.Models.ViewModels.Tarea
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tarea</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tarea_Empleado.PersonaNombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tarea_Empleado.PersonaNombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tarea_Orden.OrdenID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tarea_Orden.OrdenID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tarea_Solicitud.SolicitudOwnerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tarea_Solicitud.SolicitudOwnerID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TareaDescripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TareaDescripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TareaDescripcion2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TareaDescripcion2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TareaTipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TareaTipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TareaModulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TareaModulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TareaFechaIni)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TareaFechaIni)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TareaFechaFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TareaFechaFin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TareaFechaIniReal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TareaFechaIniReal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TareaFechaFinReal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TareaFechaFinReal)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.TareaAprobacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TareaAprobacion)
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TareaIsDone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TareaIsDone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TareaEstado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TareaEstado)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TareaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
