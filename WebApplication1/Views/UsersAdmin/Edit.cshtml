@@ -51,11 +51,14 @@
         <div class="form-group">
             @Html.Label("Roles", new { @class = "control-label col-md-2" })
             <span class=" col-md-10">
-                @foreach (var item in Model.RolesList)
+                @if (Model.RolesList != null)
                 {
-                    <input type="checkbox" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
-                    @Html.Label(item.Value, new { @class = "control-label" })
-                }
+                    foreach (var item in Model.RolesList)
+                    {
+                        <input type="checkbox" name="SelectedRole" value="@item.Value" checked="@item.Selected" class="checkbox-inline" />
+                        @Html.Label(item.Value, new { @class = "control-label" })
+                    }
+                }                
             </span>
         </div>
 

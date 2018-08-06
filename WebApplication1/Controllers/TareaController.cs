@@ -34,16 +34,17 @@ namespace WebApplication1.Controllers
             //{
             //    return View(tareas.ToList().Where(x => x.Tarea_AppUser == currentUser));
             //}
-            ViewBag.EmpleadoID = new SelectList(db.Personas, "PersonaID", "PersonaNombre");
+            ViewBag.EmpleadoID = new SelectList(db.Personas.OfType<Empleado>(), "PersonaID", "PersonaNombre");
             ViewBag.OrdenID = new SelectList(db.Ordens, "OrdenID", "OrdenID");
-            ViewBag.SolicitudID = new SelectList(db.Solicituds, "SolicitudID", "SolicitudID");
+            ViewBag.SolicitudID = new SelectList(db.Solicituds.Where(x => x.SolicitudEstado != SolicitudStatus.Orden_Enviada), "SolicitudID", "SolicitudID");
+            ViewBag.successMessage = "";
             return View();
         }
 
         private IEnumerable<Tarea> GetMyTareas()
         {
             string currentUserId = User.Identity.GetUserId();
-            ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == currentUserId);            
+            ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == currentUserId);
 
             if (currentUser != null)
             {
@@ -59,8 +60,14 @@ namespace WebApplication1.Controllers
                     }
                 }
 
+                if (completeCount == 0)
+                {
+                    ViewBag.Percent = 0;
+                }
+                else
+                { 
                 ViewBag.Percent = Math.Round(100f * ((float)completeCount / (float)MyToDoes.Count()));
-
+                }
                 //var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
                 //if (UserManager.IsInRole(currentUserId, "Admin"))
                 if (IsAdmin(currentUserId))
@@ -160,32 +167,47 @@ namespace WebApplication1.Controllers
                 if (IsAdmin(currentUserId))
                 {
                     //el usuario del empleado que seleccionó el ADMIN
-                    tarea.Tarea_AppUser = GetUsuarioEmpleado(tarea.EmpleadoID);
+                    ApplicationUser usuarioEmpleado = GetUsuarioEmpleado(tarea.EmpleadoID);
+                    if (usuarioEmpleado != null)
+                    {
+                        tarea.Tarea_AppUser = usuarioEmpleado;
+                        ViewBag.successMessage = "";
+                    }
+                    else
+                    {
+                        ViewBag.successMessage = "No puede crear una Tarea para un Empleado que no tiene un Usuario de Sistema. Asigne un Usuario al Empleado e intente nuevamente.";
+                    }
+                    
                 }
                 else
                 {
                     //el mismo empleado (usuario de logueo y usuario del sistema) que creo la tarea
                     tarea.Tarea_AppUser = currentUser;                    
                     tarea.EmpleadoID = currentUser.ApplicationUser_Persona.PersonaID;
+                    ViewBag.successMessage = "";
                 }
-                tarea.TareaTipo = TipoTarea.Manual;                
-                tarea.TareaEstado = EstadoTarea.Asignada;
-                tarea.TareaIsDone = false;
-                //tarea.Tarea_AppUser = currentUser;
-                //TareaFechaIniReal,TareaFechaFinReal,SolicitudID,OrdenID
-                //tarea.TareaModulo = ModuloTarea.TareaModuloVentas;
-                //tarea.TareaFechaIni = DateTime.Now;
-                //tarea.TareaFechaFin = DateTime.Now.AddDays(1);
-                //tarea.EmpleadoID = currentUser.ApplicationUser_Persona.PersonaID;
 
-                db.Tareas.Add(tarea);
-                db.SaveChanges();
-                //return RedirectToAction("Index");
+                if (ViewBag.successMessage == "")
+                { 
+                    tarea.TareaTipo = TipoTarea.Manual;                
+                    tarea.TareaEstado = EstadoTarea.Asignada;
+                    tarea.TareaIsDone = false;
+                    //tarea.Tarea_AppUser = currentUser;
+                    //TareaFechaIniReal,TareaFechaFinReal,SolicitudID,OrdenID
+                    //tarea.TareaModulo = ModuloTarea.TareaModuloVentas;
+                    //tarea.TareaFechaIni = DateTime.Now;
+                    //tarea.TareaFechaFin = DateTime.Now.AddDays(1);
+                    //tarea.EmpleadoID = currentUser.ApplicationUser_Persona.PersonaID;
+
+                    db.Tareas.Add(tarea);
+                    db.SaveChanges();
+                    //return RedirectToAction("Index");
+                }
             }
 
-            ViewBag.EmpleadoID = new SelectList(db.Personas, "PersonaID", "PersonaNombre", tarea.EmpleadoID);
+            ViewBag.EmpleadoID = new SelectList(db.Personas.OfType<Empleado>(), "PersonaID", "PersonaNombre", tarea.EmpleadoID);
             ViewBag.OrdenID = new SelectList(db.Ordens, "OrdenID", "OrdenID", tarea.OrdenID);
-            ViewBag.SolicitudID = new SelectList(db.Solicituds, "SolicitudID", "SolicitudID", tarea.SolicitudID);
+            ViewBag.SolicitudID = new SelectList(db.Solicituds.Where(x => x.SolicitudEstado != SolicitudStatus.Orden_Enviada), "SolicitudID", "SolicitudID", tarea.SolicitudID);
             //return View(tarea);
             return PartialView("_ToDoTable", GetMyTareas());
         }
@@ -193,7 +215,17 @@ namespace WebApplication1.Controllers
         //recuperar el usuario asociado a un ID de empleado
         public ApplicationUser GetUsuarioEmpleado(int? empleadoID)
         {
-            var usuarioEmpleado = db.Empleados.Where(x => x.PersonaID == empleadoID).SingleOrDefault();
+            if (empleadoID == null)
+            {
+                return null;
+            }
+            Empleado usuarioEmpleado = db.Empleados.Find(empleadoID);
+            if (usuarioEmpleado == null)
+            {
+                return null;
+            }
+
+            //var usuarioEmpleado = db.Empleados.Where(x => x.PersonaID == empleadoID).SingleOrDefault();
             return usuarioEmpleado.Empleado_AppUser; 
         }
 
@@ -221,7 +253,7 @@ namespace WebApplication1.Controllers
 
             ViewBag.EmpleadoID = new SelectList(db.Personas, "PersonaID", "PersonaNombre", tarea.EmpleadoID);
             ViewBag.OrdenID = new SelectList(db.Ordens, "OrdenID", "OrdenID", tarea.OrdenID);
-            ViewBag.SolicitudID = new SelectList(db.Solicituds, "SolicitudID", "SolicitudOwnerID", tarea.SolicitudID);
+            ViewBag.SolicitudID = new SelectList(db.Solicituds, "SolicitudID", "SolicitudID", tarea.SolicitudID);
             return View(tarea);
         }
 
@@ -234,8 +266,67 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tarea).State = EntityState.Modified;
-                db.SaveChanges();
+
+                bool guardar = false;
+                if (tarea.TareaFechaIniReal != null)
+                {
+                    if (tarea.TareaFechaFinReal != null)
+                    {
+                        if (tarea.TareaFechaIniReal <= tarea.TareaFechaFinReal)
+                        {
+                            tarea.TareaEstado = EstadoTarea.Finalizada;
+                            tarea.TareaIsDone = true;
+                            guardar = true;
+                        }
+                        else
+                        {
+                            guardar = false;
+                            ModelState.AddModelError("TareaFechaIniReal", "La Fecha Inicio real no puede ser mayor a la Fecha Real Fin");
+                        }
+                    }
+                    else
+                    {
+                        //si la de inicio pero no la de fin
+                        if (tarea.TareaIsDone == true)
+                        {
+                            //la de inicio y check finalizada
+                            tarea.TareaEstado = EstadoTarea.Finalizada;
+                            tarea.TareaIsDone = true;
+                            tarea.TareaFechaFinReal = DateTime.Now;
+                            guardar = true;
+                        }
+                        else
+                        {
+                            tarea.TareaEstado = EstadoTarea.EnCurso;
+                            tarea.TareaIsDone = false;
+                            guardar = true;
+                        }                        
+                    }
+                }
+                else
+                {
+                    //inicio real vacía, no puede existir fecha fin real
+                    if (tarea.TareaFechaFinReal == null)
+                    {
+                        if (tarea.TareaIsDone == true)
+                        {
+                            guardar = false;
+                            ModelState.AddModelError("TareaIsDone", "No puede marcar como finalizar una tarea sin Fecha Real de Inicio");
+                        }
+                        guardar = true;
+                    }
+                    else
+                    {
+                        guardar = false;
+                        ModelState.AddModelError("TareaFechaFinReal", "No puede indicar Fecha Real Fin para tarea sin Fecha Real de Inicio");
+                    }
+                }
+
+                if (guardar)
+                { 
+                    db.Entry(tarea).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
             ViewBag.EmpleadoID = new SelectList(db.Personas, "PersonaID", "PersonaNombre", tarea.EmpleadoID);
@@ -259,22 +350,29 @@ namespace WebApplication1.Controllers
             }
             else
             {
+                ViewBag.successMessage = "";
                 if (tarea.TareaFechaIniReal == null)
                 {
-                    return RedirectToAction("Edit","Tarea", new {id=tarea.TareaID});
+                    //return RedirectToAction("Edit", "Tarea", new { id = tarea.TareaID });
+                    ViewBag.successMessage = "No puede finalizar una tarea sin Fecha de Inicio Real. Ingrese la misma desde la opción Editar Tarea y vuelva a intentarlo";
                 }
-                
-                //seteo de valores
-                tarea.TareaIsDone = value;
+                else
+                { 
+                    //seteo de valores
+                    tarea.TareaIsDone = value;
 
-                if (tarea.TareaIsDone)
-                {
-                    tarea.TareaFechaIni = DateTime.Now;
-                    tarea.TareaFechaFin = DateTime.Now.AddDays(1);
+                    if (tarea.TareaIsDone)
+                    {
+                        tarea.TareaFechaFinReal = DateTime.Now;
+                    }
+                    else
+                    {
+                        tarea.TareaFechaFinReal = null;
+                    }
+
+                    db.Entry(tarea).State = EntityState.Modified;
+                    db.SaveChanges();
                 }
-
-                db.Entry(tarea).State = EntityState.Modified;
-                db.SaveChanges();
 
                 return PartialView("_ToDoTable", GetMyTareas());
             }

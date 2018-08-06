@@ -9,6 +9,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebApplication1.Models;
+using WebApplication1.Models.ViewModels;
+using System.Net.Mail;
+using System.Data.Entity.Migrations;
 
 namespace WebApplication1.Controllers
 {
@@ -184,10 +187,41 @@ namespace WebApplication1.Controllers
                 user.State = model.State;
                 user.PostalCode = model.PostalCode;
 
+                MailAddress addr = new MailAddress(model.Email);
+
+                //crear empleado
+                var empleado = new Empleado
+                {
+                    PersonaNombre = addr.User,
+                    EmpleadoNivel = "",
+                    EmpleadoSector = Empleadosector.Empresa,
+                    PersonaCUIL = 80000000000,
+                    PersonaApellido = addr.Host,
+                    PersonaDni = 00000000,
+                    PersonaDireccion = user.Address,
+                    PersonaFechaNacimiento = DateTime.Parse("1970-01-11"),
+                    PersonaLocalidad = " ",
+                    PersonaMail = model.Email,
+                    PersonaNacionalidad = " ",
+                    PersonaSexo = "",
+                    PersonaTelefono = 0000000000000,
+                    EmpleadoTipo = Empleadotipo.Operario
+                };
+
+                user.ApplicationUser_Persona = empleado;
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 //
                 if (result.Succeeded)
                 {
+                    //NJB-ini
+                    empleado.Empleado_AppUser = UserManager.FindById(user.Id);
+                    var db = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
+
+                    db.Empleados.AddOrUpdate(p => p.PersonaNombre, empleado);
+                    db.SaveChanges();
+                    //NJB-fin
+
                     //If the user was successfully created, she is logged in by the SignInAsync method.
 
                     //NJB - Comment the following line to prevent log in until the user is confirmed.

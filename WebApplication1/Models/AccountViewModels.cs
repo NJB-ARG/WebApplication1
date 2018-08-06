@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using WebApplication1.Models.ViewModels;
 
 namespace WebApplication1.Models
 {
@@ -93,9 +94,10 @@ namespace WebApplication1.Models
         public string City { get; set; }
         public string State { get; set; }
 
-        // Use a sensible display name for views:
         [Display(Name = "Postal Code")]
         public string PostalCode { get; set; }
+
+        public Empleado Empleado { get; set; }
         //NJB-FIN-Update the RegisterViewModel to Include Address Info
     }
 

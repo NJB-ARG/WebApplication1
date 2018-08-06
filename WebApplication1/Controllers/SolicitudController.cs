@@ -363,7 +363,7 @@ namespace WebApplication1.Controllers
                     }
 
                     //***CREACION DE LA ORDEN
-                    if (solicitudToUpdate.SolicitudEstado == SolicitudStatus.Approbada)
+                    if (solicitudToUpdate.SolicitudEstado == SolicitudStatus.Aprobada)
                     {
                         if (solicitudToUpdate.Solicitud_Paginas.Where(r => r.PaginaValidada == false && r.PaginaTipo == "C").Count() > 0)
                         {

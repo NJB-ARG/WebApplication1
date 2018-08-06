@@ -13,8 +13,15 @@
             },
             type: 'POST',
             success: function (result) {
-                $('#tableDiv').html(result);
+                $('#tableDiv').html(result);                
+
+                if ('@ViewBag.successMessage' != "") {
+                    $('#divSuccessMessage').show("slow");                    
+                }
+                else {
+                    $('#divSuccessMessage').hide("slow");                    
+                }
             }
-        });
+        });                
     });
 })

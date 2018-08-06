@@ -327,13 +327,21 @@ namespace WebApplication1
                     EmpleadoTipo = Empleadotipo.Gerente
                 };
                 db.Empleados.AddOrUpdate(p => p.PersonaNombre,empleado);
-                db.SaveChanges();
+                db.SaveChanges();                
+
+                user = new ApplicationUser { UserName = name, Email = name };
 
                 user.ApplicationUser_Persona = empleado;
 
-                user = new ApplicationUser { UserName = name, Email = name };
                 var result = userManager.Create(user, password);
                 result = userManager.SetLockoutEnabled(user.Id, false);
+
+                //NJB-ini
+                empleado.Empleado_AppUser = db.Users.Where(x => x.Id == user.Id).SingleOrDefault();
+
+                db.Empleados.AddOrUpdate(p => p.PersonaNombre, empleado);
+                db.SaveChanges();
+                //NJB-fin
             }
 
             // Add user admin to Role Admin if not already added

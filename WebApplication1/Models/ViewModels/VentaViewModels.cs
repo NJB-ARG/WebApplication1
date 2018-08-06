@@ -120,7 +120,7 @@ namespace WebApplication1.Models.ViewModels
         Iniciada,        
         [Display(Name = "En Aprobación")]
         En_Aprobacion,
-        Approbada,        
+        Aprobada,        
         [Display(Name = "Orden Enviada")]
         Orden_Enviada,
         Cancelada,
