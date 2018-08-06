@@ -308,9 +308,40 @@ namespace WebApplication1
             var user = userManager.FindByName(name);
             if (user == null)
             {
+                //add empleado
+                var empleado = new Empleado
+                {
+                    PersonaNombre = "Administrador",
+                    EmpleadoNivel = "N1",
+                    EmpleadoSector = Empleadosector.Empresa,
+                    PersonaCUIL = 80000000000,
+                    PersonaApellido = "Administrador",
+                    PersonaDni = 31999888,
+                    PersonaDireccion = "España 1000",
+                    PersonaFechaNacimiento = DateTime.Parse("1970-09-10"),
+                    PersonaLocalidad = "Rosario",
+                    PersonaMail = "admin@mail.com",
+                    PersonaNacionalidad = "Argentina",
+                    PersonaSexo = "M",
+                    PersonaTelefono = 0341156177888,
+                    EmpleadoTipo = Empleadotipo.Gerente
+                };
+                db.Empleados.AddOrUpdate(p => p.PersonaNombre,empleado);
+                db.SaveChanges();                
+
                 user = new ApplicationUser { UserName = name, Email = name };
+
+                user.ApplicationUser_Persona = empleado;
+
                 var result = userManager.Create(user, password);
                 result = userManager.SetLockoutEnabled(user.Id, false);
+
+                //NJB-ini
+                empleado.Empleado_AppUser = db.Users.Where(x => x.Id == user.Id).SingleOrDefault();
+
+                db.Empleados.AddOrUpdate(p => p.PersonaNombre, empleado);
+                db.SaveChanges();
+                //NJB-fin
             }
 
             // Add user admin to Role Admin if not already added

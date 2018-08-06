@@ -10,6 +10,8 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Net.Mail;
+using WebApplication1.Models.ViewModels;
 
 namespace WebApplication1.Controllers
 {
@@ -107,6 +109,29 @@ namespace WebApplication1.Controllers
                 user.State = userViewModel.State;
                 user.PostalCode = userViewModel.PostalCode;
                 //NJB-FIN - Add the Address Info (Security)
+
+                MailAddress addr = new MailAddress(userViewModel.Email);
+
+                //crear empleado
+                var empleado = new Empleado
+                {
+                    PersonaNombre = addr.User,
+                    EmpleadoNivel = "",
+                    EmpleadoSector = Empleadosector.Empresa,
+                    PersonaCUIL = 80000000000,
+                    PersonaApellido = addr.Host,
+                    PersonaDni = 00000000,
+                    PersonaDireccion = user.Address,
+                    PersonaFechaNacimiento = DateTime.Parse("1970-01-11"),
+                    PersonaLocalidad = " ",
+                    PersonaMail = userViewModel.Email,
+                    PersonaNacionalidad = " ",
+                    PersonaSexo = "",
+                    PersonaTelefono = 0000000000000,
+                    EmpleadoTipo = Empleadotipo.Operario
+                };
+
+                user.ApplicationUser_Persona = empleado;
 
                 // Then create:
                 var adminresult = await UserManager.CreateAsync(user, userViewModel.Password);

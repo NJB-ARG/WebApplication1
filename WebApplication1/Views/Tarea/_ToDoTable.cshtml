@@ -1,0 +1,160 @@
+﻿@model IEnumerable<WebApplication1.Models.ViewModels.Tarea>
+
+<div id="progressBarToDo">
+    <p>@(ViewBag.Percent)%</p>
+    <div class="progress">
+        <div class="progress-bar" role="progressbar"
+             style="width:@(ViewBag.Percent)%"></div>
+    </div>
+</div>
+
+<div id="divSuccessMessage" style="display:inline">
+    @if (@ViewBag.successMessage == null)
+    {
+        <div class="alert alert-dark" role="alert">
+            @(ViewBag.successMessage) <a href="@Url.Action("Index", "Tarea")" class="alert-link">Listado de Tareas</a>
+        </div>
+    }
+    else if (@ViewBag.successMessage == "")
+    {
+        <div class="alert alert-success" role="alert">
+            @(ViewBag.successMessage) <a href="@Url.Action("Index", "Tarea")" class="alert-link">Operación Correcta</a>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger" role="alert">
+            @(ViewBag.successMessage) <a href="@Url.Action("Index", "Tarea")" class="alert-link">--Limpiar Mensajes--</a>
+        </div>
+    }
+</div>  
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TareaDescripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TareaDescripcion2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TareaIsDone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TareaFechaIni)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TareaFechaFin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TareaFechaIniReal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TareaFechaFinReal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TareaEstado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tarea_Empleado.PersonaNombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tarea_Orden.OrdenID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tarea_Solicitud.SolicitudID)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+    <tr>
+        @if (!item.TareaIsDone)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.TareaDescripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TareaDescripcion2)           
+            </td>
+            <td>
+                @Html.CheckBoxFor(modelItem => item.TareaIsDone, new { id = item.TareaID, @class = "ActiveCheck" })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TareaFechaIni)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TareaFechaFin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TareaFechaIniReal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TareaFechaFinReal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TareaEstado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tarea_Empleado.PersonaNombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tarea_Orden.OrdenID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tarea_Solicitud.SolicitudID)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.TareaID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.TareaID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.TareaID })
+            </td>
+        }
+        else
+        {
+            <td>                
+                <div class="CompletedToDo">@Html.DisplayFor(modelItem => item.TareaDescripcion)</div>
+            </td>
+            <td>
+                <div class="CompletedToDo">@Html.DisplayFor(modelItem => item.TareaDescripcion2)</div>           
+            </td>
+            <td>
+                @Html.CheckBoxFor(modelItem => item.TareaIsDone, new { id = item.TareaID, @class = "ActiveCheck" })
+            </td>
+            <td>                
+                <div class="CompletedToDo">@Html.DisplayFor(modelItem => item.TareaFechaIni)</div>
+            </td>
+            <td>                
+                <div class="CompletedToDo">@Html.DisplayFor(modelItem => item.TareaFechaFin)</div>
+            </td>
+            <td>                
+                <div class="CompletedToDo">@Html.DisplayFor(modelItem => item.TareaFechaIniReal)</div>
+            </td>
+            <td>                
+                <div class="CompletedToDo">@Html.DisplayFor(modelItem => item.TareaFechaFinReal)</div>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TareaEstado)
+            </td>
+            <td>
+                <div class="CompletedToDo">@Html.DisplayFor(modelItem => item.Tarea_Empleado.PersonaNombre)</div>
+            </td>
+            <td>                
+                <div class="CompletedToDo">@Html.DisplayFor(modelItem => item.Tarea_Orden.OrdenID)</div>
+            </td>
+            <td>                
+                <div class="CompletedToDo">@Html.DisplayFor(modelItem => item.Tarea_Solicitud.SolicitudID)</div>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.TareaID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.TareaID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.TareaID })
+            </td>
+        }
+    </tr>
+    }
+
+</table>
+
+<script src="~/Custom_Scripts/AddCheckBoxListener.js"></script>

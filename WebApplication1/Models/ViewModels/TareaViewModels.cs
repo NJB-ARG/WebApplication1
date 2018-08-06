@@ -9,13 +9,23 @@ namespace WebApplication1.Models.ViewModels
 {
     public class Tarea
     {
+        public Tarea()
+        {
+            TareaFechaIni = DateTime.Now;
+            TareaFechaFin = DateTime.Now;
+            //TareaFechaIniReal = DateTime.Now;
+            //TareaFechaFinReal = DateTime.Now;
+        }
+
         [Display(Name = "Tarea ID")]
         public int TareaID { get; set; }
-        [Display(Name = "Descripción")]
+        [Display(Name = "Título")]
         public DescripcionTarea TareaDescripcion { get; set; }
-
+        [Display(Name = "Descripción")]
+        public string TareaDescripcion2 { get; set; }
+        [Display(Name = "Tipo")]
         public TipoTarea TareaTipo { get; set; }
-
+        [Display(Name = "Módulo")]
         public ModuloTarea TareaModulo { get; set; }
 
         [Display(Name = "Fecha Estimada Inicio")]
@@ -31,22 +41,43 @@ namespace WebApplication1.Models.ViewModels
         [Display(Name = "Fecha Real Inicio")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime TareaFechaIniReal { get; set; }
+        public DateTime? TareaFechaIniReal { get; set; }
 
         [Display(Name = "Fecha Real Fin")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime TareaFechaFinReal { get; set; }
+        public DateTime? TareaFechaFinReal { get; set; }
 
-        [Display(Name = "Fecha Aprobación")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime TareaAprobacion { get; set; }
+        //[Display(Name = "Fecha Aprobación")]
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //public DateTime TareaAprobacion { get; set; }
 
-        public int TareaResponsableID { get; set; }
+        [Display(Name = "Finalizada")]
+        public bool TareaIsDone { get; set; }
 
-        public int TareaAprobadorID { get; set; }
+        [Display(Name = "Empleado Responsable")]
+        public int EmpleadoID { get; set; }
+        [Display(Name = "Empleado")]
+        [ForeignKey("EmpleadoID")]
+        public virtual Empleado Tarea_Empleado { get; set; }
 
+        //Navigation prop - Security
+        [Display(Name = "Tarea Owner")]
+        public virtual ApplicationUser Tarea_AppUser { get; set; }
+
+        //foreign Key
+        public int? SolicitudID { get; set; }
+        //Navigation Properties - un solo objeto
+        [Display(Name = "Tarea Solicitud")]
+        public virtual Solicitud Tarea_Solicitud { get; set; }
+        //foreign Key
+        public int? OrdenID { get; set; }
+        //Navigation Properties - un solo objeto
+        [Display(Name = "Tarea Orden")]
+        public virtual Orden Tarea_Orden { get; set; }
+
+        [Display(Name = "Tarea Estado")]
         public EstadoTarea TareaEstado { get; set; }        
     }
 
@@ -95,8 +126,8 @@ namespace WebApplication1.Models.ViewModels
     {
         Asignada,
         EnCurso,
-        EnAprobación,
+        //EnAprobación,
         //*implica que la tarea fue aprobada por el supervisor
-        Finalizada,
+        Finalizada
     }
 }

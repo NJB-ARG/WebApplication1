@@ -10,6 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApplication1.Models.ViewModels
 {
+
     //REVISAR:  Analizar la jerarquía de dependencias entre ventas, solicitud y orden
     public class Solicitud
     {
@@ -25,13 +26,13 @@ namespace WebApplication1.Models.ViewModels
         }
 
         //[Key, ForeignKey("SolicitudVenta")]
-        [Display(Name = "ID")]
+        [Display(Name = "ID Solicitud")]
         public int SolicitudID { get; set; }
 
         //NJB-INI - user ID from AspNetUser table - (Security)
         public string SolicitudOwnerID { get; set; }
 
-        [Display(Name = "Numero")]
+        [Display(Name = "Número")]
         public int SolicitudNum { get; set; }
 
         [Display(Name = "Descripción")]
@@ -119,14 +120,14 @@ namespace WebApplication1.Models.ViewModels
         Iniciada,        
         [Display(Name = "En Aprobación")]
         En_Aprobacion,
-        Approbada,        
+        Aprobada,        
         [Display(Name = "Orden Enviada")]
         Orden_Enviada,
         Cancelada,
         Rechazada
     }
 
-    public class custom_Dropdownlist
+    public class Custom_Dropdownlist
     {
         //*para dropdownlist*
         public IEnumerable<SelectListItem> dropdownlist { set; get; }
@@ -230,6 +231,7 @@ namespace WebApplication1.Models.ViewModels
         }
 
         //[Key, ForeignKey("OrdenVenta")]
+        [Display(Name = "ID Orden")]
         public int OrdenID { get; set; }
 
         //Lista de paginas que componen la orden (Asociación Polimorfica)
@@ -245,7 +247,7 @@ namespace WebApplication1.Models.ViewModels
 
     public abstract class Persona
     {
-        [Display(Name = "ID")]
+        [Display(Name = "ID Persona")]
         public int PersonaID { get; set; }
 
         [Display(Name = "Nombre")]

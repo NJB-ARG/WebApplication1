@@ -162,11 +162,12 @@ namespace WebApplication1.Controllers
                     //ConstructorDocumento.Documento.partes
 
                     solicitud.Solicitud_Paginas = solicitudBuilder.Documento.paginas.Values.ToList();
-                    Documento doc = new Documento();
 
+                    Documento doc = new Documento();
                     doc = solicitudBuilder.Documento;
                     //LLAMADA PATRONES-FIN
                     //******
+
 
                     solicitud.SolicitudOwnerID = HttpContext.User.Identity.Name;
                     if (solicitud.SolicitudTipoSolicitante == "1")
@@ -362,7 +363,7 @@ namespace WebApplication1.Controllers
                     }
 
                     //***CREACION DE LA ORDEN
-                    if (solicitudToUpdate.SolicitudEstado == SolicitudStatus.Approbada)
+                    if (solicitudToUpdate.SolicitudEstado == SolicitudStatus.Aprobada)
                     {
                         if (solicitudToUpdate.Solicitud_Paginas.Where(r => r.PaginaValidada == false && r.PaginaTipo == "C").Count() > 0)
                         {
@@ -467,7 +468,7 @@ namespace WebApplication1.Controllers
             //                              orderby d.SolicitudID descending
             //                              select d).GroupBy(g => g.SolicitudTipoSolicitante).Select(x => x.FirstOrDefault());
             
-            var TiposSolicitantes = new custom_Dropdownlist();
+            var TiposSolicitantes = new Custom_Dropdownlist();
             TiposSolicitantes.dropdownlist = new[]
             {
                 new SelectListItem { Value = "1", Text = "Prospecto"},
