@@ -23,6 +23,14 @@ namespace WebApplication1
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
+            //NJB
+            bundles.Add(new ScriptBundle("~/bundles/bootbox").Include(
+                        "~/Scripts/bootbox.js"));
+            bundles.Add(new ScriptBundle("~/bundles/less").Include(
+                   "~/Scripts/less.js"));
+            bundles.Add(new StyleBundle("~/Content/less").Include(
+                      "~/Content/less/style.less"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));

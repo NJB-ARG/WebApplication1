@@ -90,11 +90,21 @@ namespace WebApplication1.Models
 
         //NJB-INI-Update the RegisterViewModel to Include Address Info  (NJB-Security)
         // Add the new address properties:
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Nombre")]
+        public string FirstName { get; set; }
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "Apellido")]
+        public string LastName { get; set; } 
+        [Display(Name = "Dirección")]
         public string Address { get; set; }
+        [Display(Name = "Ciudad")]
         public string City { get; set; }
+        [Display(Name = "Provincia")]
         public string State { get; set; }
-
-        [Display(Name = "Postal Code")]
+        [Display(Name = "Código Postal")]
         public string PostalCode { get; set; }
 
         public Empleado Empleado { get; set; }

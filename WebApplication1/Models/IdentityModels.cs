@@ -15,15 +15,22 @@ namespace WebApplication1.Models
     public class ApplicationUser : IdentityUser
     {
         //NJB-INI-Propiedades personalizadas (NJB-Security)
+        [Display(Name = "Nombre")]
+        public string FirstName { get; set; }
+        [Display(Name = "Apellido")]
+        public string LastName { get; set; }
+
+        [Display(Name = "Ciudad Natal")]
         public string CiudadNatal { get; set; }
+        [Display(Name = "Fecha Nacimiento")]
         public System.DateTime? FechaNacimiento { get; set; }
-
+        [Display(Name = "Dirección")]
         public string Address { get; set; }
+        [Display(Name = "Ciudad")]
         public string City { get; set; }
-        public string State { get; set; }
-
-        // Use a sensible display name for views:
-        [Display(Name = "Postal Code")]
+        [Display(Name = "Provincia")]
+        public string State { get; set; }        
+        [Display(Name = "Código Postal")]
         public string PostalCode { get; set; }
 
         // Concatenate the address info for display in tables and such:
@@ -154,7 +161,9 @@ namespace WebApplication1.Models
 
         public System.Data.Entity.DbSet<WebApplication1.Models.ViewModels.Tarea> Tareas { get; set; }
 
+        public System.Data.Entity.DbSet<WebApplication1.Models.ViewModels.Message> Messages { get; set; }
 
+        public System.Data.Entity.DbSet<WebApplication1.Models.ViewModels.Reply> Replies { get; set; }       
 
         //protected override void OnModelCreating(DbModelBuilder modelBuilder)
         //{

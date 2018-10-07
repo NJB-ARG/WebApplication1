@@ -22,36 +22,76 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @*<li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@                    
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
                     @if (Request.IsAuthenticated)
                     {
-                        @*<li>@Html.ActionLink("Solicitudes", "Index", "Solicitud")</li>
-                        <li>@Html.ActionLink("Ordenes", "Index", "Orden")</li>*@
-                        @*<li>@Html.ActionLink("Clientes", "Index", "Cliente")</li>
-                        <li>@Html.ActionLink("Empleados", "Index", "Empleado")</li>
-                        <li>@Html.ActionLink("Prospectos", "Index", "Prospecto")</li>*@
-                        @*<li>@Html.ActionLink("Cuentas", "Index", "Cuenta")</li>*@
-                        <li>@Html.ActionLink("Productos", "Index", "Producto")</li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Personas
+                                Módulo Empleados
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="@Url.Action("Index", "Cliente")">Clientes</a>
-                                <a class="dropdown-item" href="@Url.Action("Index", "Tarea")">Tareas</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "Tarea")">Gestionar Tareas</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Módulo Ventas
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="@Url.Action("Index", "HojaProspecto")">Gestionar Hoja de Prospecto</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="@Url.Action("Index", "Solicitud")">Solicitudes de Venta</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "Solicitud")">Gestionar Solicitudes de Venta</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="@Url.Action("Index", "Orden")">Gestionar Ordenes de Venta</a>
+                            </div>
+                        </li>                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Módulo Personas
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="@Url.Action("Index", "Cliente")">Gestionar Clientes</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="@Url.Action("Index", "Empleado")">Gestionar Empleados</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="@Url.Action("Index", "Prospecto")">Gestionar Prospectos</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Módulo ABM
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="@Url.Action("Index", "Producto")">Gestionar Productos</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="@Url.Action("Index", "Empresa")">Gestionar Empresas</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="@Url.Action("Index", "Sucursal")">Gestionar Sucursales</a>
                             </div>
                         </li>
                     }
                     @*Agregado Ini-(SECURITY)*@
                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                     {
-                        <li>@Html.ActionLink("Roles-Admin", "Index", "RolesAdmin")</li>
+                        @*<li>@Html.ActionLink("Roles-Admin", "Index", "RolesAdmin")</li>
                         <li>@Html.ActionLink("Users-Admin", "Index", "UsersAdmin")</li>
                         <li>@Html.ActionLink("Perfiles", "Index", "Perfil")</li>
-                        <li>@Html.ActionLink("Auditoria", "Index", "ActionLog")</li>
+                        <li>@Html.ActionLink("Auditoria", "Index", "ActionLog")</li>*@
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Módulo Seguridad
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="@Url.Action("Index", "RolesAdmin")">Gestionar Roles Admin</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="@Url.Action("Index", "UsersAdmin")">Gestionar Usuarios Admin</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="@Url.Action("Index", "Perfil")">Gestionar Perfiles</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="@Url.Action("Index", "ActionLog")">Gestionar Auditoria</a>
+                            </div>
+                        </li>
                     }
                     @*Agregado Fin-(SECURITY)*@
                 </ul>
@@ -59,7 +99,7 @@
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
-    </div>
+    </div>    
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -71,6 +111,8 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/less")
+    @Scripts.Render("~/bundles/bootbox")
     @RenderSection("scripts", required: false)
 </body>
 </html>

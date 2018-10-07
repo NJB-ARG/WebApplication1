@@ -35,6 +35,7 @@ namespace WebApplication1.Controllers
         public ActionResult Index()
         {
             var ordens = db.Ordens.Include(o => o.Orden_Solicitud);
+
             return View(ordens.ToList());
         }
 

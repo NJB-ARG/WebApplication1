@@ -135,6 +135,12 @@
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="SendGrid, Version=9.8.0.0, Culture=neutral, PublicKeyToken=4f047e93159395ca, processorArchitecture=MSIL">
       <HintPath>..\packages\Sendgrid.9.9.0\lib\net452\SendGrid.dll</HintPath>
       <Private>True</Private>
@@ -245,6 +251,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LineaSolicitudController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ApplicationBaseController.cs" />
+    <Compile Include="Controllers\MensajesController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\OrdenController.cs" />
     <Compile Include="Controllers\Paginas\ComentarioController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
@@ -263,6 +272,7 @@
     <Compile Include="HtmlHelperExtensions\Helpers.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
+    <Compile Include="Models\AgendaViewModels.cs" />
     <Compile Include="Models\PaginaModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -271,6 +281,8 @@
     <Compile Include="Models\Pattern_State.cs" />
     <Compile Include="Models\SeguridadModels.cs" />
     <Compile Include="Models\ViewModels\IndexViewModels.cs" />
+    <Compile Include="Models\ViewModels\MessageboardViewModels.cs" />
+    <Compile Include="Models\ViewModels\MessageReplyViewModel.cs" />
     <Compile Include="Models\ViewModels\OrdenViewModel.cs" />
     <Compile Include="Models\ViewModels\PaginaValidadaViewModel.cs" />
     <Compile Include="Models\ViewModels\TareaViewModels.cs" />
@@ -296,12 +308,14 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Custom_Scripts\AddCheckBoxListener.js" />
     <Content Include="Custom_Scripts\BuildTableTarea.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\no.png" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -322,6 +336,8 @@
     </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.2.1-vsdoc.js" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
@@ -488,10 +504,14 @@
     <Content Include="Views\Tarea\Edit.cshtml" />
     <Content Include="Views\Tarea\Index.cshtml" />
     <Content Include="Views\Tarea\_ToDoTable.cshtml" />
+    <Content Include="Views\Tarea\_Messages.cshtml" />
+    <Content Include="Views\Message\Create.cshtml" />
+    <Content Include="Views\Mensajes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ApplicationBase\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
