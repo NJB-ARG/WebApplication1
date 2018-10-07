@@ -19,6 +19,7 @@
     }))
     {
         @Html.AntiForgeryToken()
+        <p><ins>Seleccione los datos de los desplegables</ins></p>
         <div class="form-group">
             @Html.LabelFor(model => model.TareaDescripcion, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -53,7 +54,7 @@
 
         if (Request.IsAuthenticated && User.IsInRole("Admin"))
         {
-            <p>Asigne un Empleado a la Tarea</p>
+            <br><p><ins>Asigne un Empleado a la Tarea</ins></p>
             <div class="form-group">
                 @Html.LabelFor(model => model.EmpleadoID, "EmpleadoID", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -63,6 +64,7 @@
             </div>
         }
 
+        <br><p><ins>Asigne una Solicitud u Orden a la Tarea</ins></p>
         <div class="form-group">
             @Html.LabelFor(model => model.SolicitudID, "SolicitudID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -78,7 +80,7 @@
                 @Html.ValidationMessageFor(model => model.OrdenID, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <br><p><ins>Ingrese una descripción breve y <mark>presione Enter</mark></ins></p>
         <div class="form-group">
             @Html.LabelFor(model => model.TareaDescripcion2, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

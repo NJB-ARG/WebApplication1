@@ -93,36 +93,35 @@ namespace WebApplication1.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser
-                { UserName = userViewModel.Email, Email = userViewModel.Email,
-                  
-                //NJB-INI Add the Address Info - Necesario??
+                { UserName = userViewModel.Email, Email = userViewModel.Email,                  
+                //NJB-INI Add the Address Info
+                  FirstName = userViewModel.FirstName,
+                  LastName = userViewModel.LastName,
                   Address = userViewModel.Address,
                   City = userViewModel.City,
                   State = userViewModel.State,
                   PostalCode = userViewModel.PostalCode
-                //NJB-FIN Add the Address Info - Necesario??
+                //NJB-FIN Add the Address Info
                 };
                 
                 //NJB-INI - Add the Address Info (Security)
-                user.Address = userViewModel.Address;
-                user.City = userViewModel.City;
-                user.State = userViewModel.State;
-                user.PostalCode = userViewModel.PostalCode;
+                //user.Address = userViewModel.Address;
+                //user.City = userViewModel.City;
+                //user.State = userViewModel.State;
+                //user.PostalCode = userViewModel.PostalCode;
                 //NJB-FIN - Add the Address Info (Security)
-
-                MailAddress addr = new MailAddress(userViewModel.Email);
 
                 //crear empleado
                 var empleado = new Empleado
                 {
-                    PersonaNombre = addr.User,
+                    PersonaNombre = userViewModel.FirstName,
                     EmpleadoNivel = "",
                     EmpleadoSector = Empleadosector.Empresa,
                     PersonaCUIL = 80000000000,
-                    PersonaApellido = addr.Host,
+                    PersonaApellido = userViewModel.LastName,
                     PersonaDni = 00000000,
                     PersonaDireccion = user.Address,
-                    PersonaFechaNacimiento = DateTime.Parse("1970-01-11"),
+                    PersonaFechaNacimiento = DateTime.MaxValue,
                     PersonaLocalidad = " ",
                     PersonaMail = userViewModel.Email,
                     PersonaNacionalidad = " ",
@@ -184,6 +183,8 @@ namespace WebApplication1.Controllers
                 Id = user.Id,
                 Email = user.Email,
                 //NJB-INI - Include the Addresss info (Security)
+                FirstName = user.FirstName,
+                LastName = user.LastName,
                 Address = user.Address,
                 City = user.City,
                 State = user.State,
@@ -202,7 +203,7 @@ namespace WebApplication1.Controllers
         // POST: /Users/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Email,Id,Address,City,State,PostalCode")] EditUserViewModel editUser, params string[] selectedRole)
+        public async Task<ActionResult> Edit([Bind(Include = "Email,Id,Address,City,State,PostalCode,FirstName,LastName")] EditUserViewModel editUser, params string[] selectedRole)
         {
             if (ModelState.IsValid)
             {
@@ -215,6 +216,8 @@ namespace WebApplication1.Controllers
                 user.UserName = editUser.Email;
                 user.Email = editUser.Email;
                 //NJB-INI - (Security)
+                user.FirstName = editUser.FirstName;
+                user.LastName = editUser.LastName;
                 user.Address = editUser.Address;
                 user.City = editUser.City;
                 user.State = editUser.State;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Threading;
 using System.Web;
 
 namespace WebApplication1.Models.ViewModels
@@ -78,7 +79,10 @@ namespace WebApplication1.Models.ViewModels
         public virtual Orden Tarea_Orden { get; set; }
 
         [Display(Name = "Tarea Estado")]
-        public EstadoTarea TareaEstado { get; set; }        
+        public EstadoTarea TareaEstado { get; set; }
+
+        //Una tarea puede tener varios mensajes
+        public virtual List<Message> Solicitud_Messages { get; set; }
     }
 
     public enum DescripcionTarea

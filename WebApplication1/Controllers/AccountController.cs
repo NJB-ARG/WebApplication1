@@ -179,27 +179,31 @@ namespace WebApplication1.Controllers
             if (ModelState.IsValid)
             {
                 //ASP.NET Identity API
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-
-                // Add the Address properties  (NJB-Security)
-                user.Address = model.Address;
-                user.City = model.City;
-                user.State = model.State;
-                user.PostalCode = model.PostalCode;
-
-                MailAddress addr = new MailAddress(model.Email);
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    // Add the Address properties  (NJB-Security)
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Address = model.Address,
+                    City = model.City,
+                    State = model.State,
+                    PostalCode = model.PostalCode
+                    //(NJB-Security)
+                };
 
                 //crear empleado
                 var empleado = new Empleado
                 {
-                    PersonaNombre = addr.User,
+                    PersonaNombre = model.FirstName,
                     EmpleadoNivel = "",
                     EmpleadoSector = Empleadosector.Empresa,
                     PersonaCUIL = 80000000000,
-                    PersonaApellido = addr.Host,
+                    PersonaApellido = model.LastName,
                     PersonaDni = 00000000,
                     PersonaDireccion = user.Address,
-                    PersonaFechaNacimiento = DateTime.Parse("1970-01-11"),
+                    PersonaFechaNacimiento = DateTime.MaxValue,
                     PersonaLocalidad = " ",
                     PersonaMail = model.Email,
                     PersonaNacionalidad = " ",
@@ -208,13 +212,14 @@ namespace WebApplication1.Controllers
                     EmpleadoTipo = Empleadotipo.Operario
                 };
 
+                //asigno la persona (empleado) al usuario
                 user.ApplicationUser_Persona = empleado;
 
                 var result = await UserManager.CreateAsync(user, model.Password);
                 //
                 if (result.Succeeded)
                 {
-                    //NJB-ini
+                    //NJB-ini actualizo el usuario en la persona (empleado)
                     empleado.Empleado_AppUser = UserManager.FindById(user.Id);
                     var db = HttpContext.GetOwinContext().Get<ApplicationDbContext>();
 

@@ -12,7 +12,7 @@
     @if (@ViewBag.successMessage == null)
     {
         <div class="alert alert-dark" role="alert">
-            @(ViewBag.successMessage) <a href="@Url.Action("Index", "Tarea")" class="alert-link">Listado de Tareas</a>
+            No hay mensajes para mostrar <a href="@Url.Action("Index", "Tarea")" class="alert-link">Listado de Tareas</a>
         </div>
     }
     else if (@ViewBag.successMessage == "")
@@ -58,12 +58,12 @@
         <th>
             @Html.DisplayNameFor(model => model.Tarea_Empleado.PersonaNombre)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Tarea_Orden.OrdenID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Tarea_Solicitud.SolicitudID)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -99,13 +99,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Tarea_Empleado.PersonaNombre)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Tarea_Orden.OrdenID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Tarea_Solicitud.SolicitudID)
-            </td>
+            </td>*@
             <td>
+                @Html.ActionLink("Ver Mensajes", "Index", "Mensajes", new { idTarea = item.TareaID }, null) |
                 @Html.ActionLink("Edit", "Edit", new { id = item.TareaID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.TareaID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.TareaID })
@@ -140,13 +141,14 @@
             <td>
                 <div class="CompletedToDo">@Html.DisplayFor(modelItem => item.Tarea_Empleado.PersonaNombre)</div>
             </td>
-            <td>                
+            @*<td>                
                 <div class="CompletedToDo">@Html.DisplayFor(modelItem => item.Tarea_Orden.OrdenID)</div>
             </td>
             <td>                
                 <div class="CompletedToDo">@Html.DisplayFor(modelItem => item.Tarea_Solicitud.SolicitudID)</div>
-            </td>
+            </td>*@
             <td>
+                @Html.ActionLink("Ver Mensajes", "Index", "Mensajes", new { idTarea = item.TareaID }, null) |
                 @Html.ActionLink("Edit", "Edit", new { id = item.TareaID }) |
                 @Html.ActionLink("Details", "Details", new { id = item.TareaID }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.TareaID })

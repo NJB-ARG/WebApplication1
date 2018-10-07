@@ -332,6 +332,8 @@ namespace WebApplication1
                 user = new ApplicationUser { UserName = name, Email = name };
 
                 user.ApplicationUser_Persona = empleado;
+                user.FirstName = "Administrador";
+                user.LastName = name;
 
                 var result = userManager.Create(user, password);
                 result = userManager.SetLockoutEnabled(user.Id, false);

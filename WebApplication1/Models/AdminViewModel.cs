@@ -27,14 +27,20 @@ namespace WebApplication1.Models
         [EmailAddress]
         public string Email { get; set; }
 
-        // Add the Address Info:
+        // NJB - Add more fields
+        [Display(Name = "Nombre")]
+        public string FirstName { get; set; }
+        [Display(Name = "Apellido")]
+        public string LastName { get; set; }
+        [Display(Name = "Dirección")]
         public string Address { get; set; }
+        [Display(Name = "Ciudad")]
         public string City { get; set; }
+        [Display(Name = "Provincia")]
         public string State { get; set; }
-
-        // Use a sensible display name for views:
-        [Display(Name = "Postal Code")]
+        [Display(Name = "Código Postal")]
         public string PostalCode { get; set; }
+        //
 
         public IEnumerable<SelectListItem> RolesList { get; set; }
     }

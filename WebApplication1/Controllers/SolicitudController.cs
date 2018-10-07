@@ -165,6 +165,11 @@ namespace WebApplication1.Controllers
 
                     Documento doc = new Documento();
                     doc = solicitudBuilder.Documento;
+
+                    //Patron State
+                    //doc.State = new ConcreteStateBorrador();
+                    //doc.Request();
+
                     //LLAMADA PATRONES-FIN
                     //******
 
@@ -362,6 +367,9 @@ namespace WebApplication1.Controllers
                         solicitudToUpdate.Solicitud_Prospecto = null;
                     }
 
+                    //****PATRON SATE
+                    //RESTO DE ESTADOS
+                    
                     //***CREACION DE LA ORDEN
                     if (solicitudToUpdate.SolicitudEstado == SolicitudStatus.Aprobada)
                     {
@@ -384,6 +392,7 @@ namespace WebApplication1.Controllers
                         }
                         else
                         {
+
                             db.SaveChanges();
 
                             return RedirectToAction("Create", "Orden", new { idSolicitud = solicitudToUpdate.SolicitudID });
